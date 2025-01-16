@@ -1,0 +1,75 @@
+---
+import ContainerSection from "@lib/components/ContainerSection.astro";
+import ArtistCard from "@lib/components/artist/ArtistCard.astro";
+import { slugify } from "@lib/utils";
+
+interface Props {
+  data?: ArtistsSectionData;
+}
+
+const { data } = Astro.props;
+---
+
+<ContainerSection id="artists" color="pj-violet">
+  <!-- TITLE -->
+  {
+    data.title && (
+      <div class="text-center">
+        <h2 class="text-pj-yellow selection:bg-pj-yellow selection:text-pj-violet">{data.title}</h2>
+      </div>
+    )
+  }
+
+  <!-- TEXT -->
+  {
+    data.text && (
+      <div
+        class="px-4 mx-auto mt-16 leading-7 text-pj-yellow selection:bg-pj-yellow selection:text-pj-violet columns-1 gap-x-12 gap-y-16 artists-section-text"
+        set:html={data.text}
+      />
+    )
+  }
+
+  <!-- ARTISTS -->
+  {
+    data.artists && (
+      <div class="flex flex-wrap justify-center w-full pt-0 mt-32 md:nth-2:pt-8 lg:nth-2:pt-0 lg:nth-3:pt-8 selection:bg-pj-yellow ">
+        {data.artists.map((artist) => (
+          <div id={slugify(artist.name)} class="w-full mb-[2vw] mx-0 md:mx-8 md:mb-0 md:max-w-[30vw] lg:max-w-[20vw] xl:max-w-64">
+            <ArtistCard data={artist} />
+          </div>
+        ))}
+      </div>
+    )
+  }
+</ContainerSection>
+
+<style lang="postcss">
+  :global(.artists-section-text a) {
+    @apply underline hover:no-underline;
+  }
+
+  :global(.artists-section-text p) {
+    @apply text-pj-yellow;
+  }
+
+  :global(.artists-section-text li) {
+    @apply text-pj-yellow;
+  }
+
+  :global(.artists-section-text h3) {
+    @apply text-red-400 pt-4;
+  }
+
+  :global(.artists-section-text h4) {
+    @apply text-pj-cyan pt-4;
+  }
+
+  :global(.artists-section-text h5) {
+    @apply text-pj-blue;
+  }
+
+  :global(.artists-section-text p, ul) {
+    @apply mb-4 mt-4;
+  }
+</style>

@@ -1,0 +1,48 @@
+---
+import Picture from "../Picture.astro";
+import BubblesOverlay from "./BubblesOverlay.astro";
+
+import { Picture as AstroPicture } from "astro:assets";
+import smiley from "@assets/smiley.jpg";
+
+interface Props {
+  data?: ArtistData;
+}
+
+const { data } = Astro.props;
+
+const isVideo = !!data.video_id;
+const country = data.country ? " (" + data.country + ")" : "";
+---
+
+<div class="artist-card-content">
+  <div class="absolute inset-0 bg-pj-violet-light"></div>
+
+  <div class="absolute inset-0 transition duration-300 group-hover:scale-105 group-focus:scale-105">
+    {
+      data.picture ? (
+        <Picture
+          data={data.picture}
+          sizes="(max-width: 770px) 80vw, (max-width: 1020px) 40vw, (max-width: 1150px) 25vw, 400px"
+          class="absolute inset-0 object-cover w-full h-full max-w-none"
+        />
+      ) : (
+        <AstroPicture src={smiley} formats={["avif", "webp"]} alt={data.name} />
+      )
+    }
+  </div>
+
+  <BubblesOverlay {isVideo} />
+
+  <div class="absolute bottom-0 left-0 flex items-center justify-center w-full h-1/5">
+    <div
+      class="font-vodka text-center uppercase mb-1 px-2
+              text-[6vw] leading-[7vw]
+              md:text-[3.5vw] md:leading-[3vw]
+              lg:text-[2.5vw] lg:leading-[2vw]
+              xl:text-3xl xl:leading-7"
+    >
+      <span class="text-pj-violet">{data.name}{country}</span>
+    </div>
+  </div>
+</div>

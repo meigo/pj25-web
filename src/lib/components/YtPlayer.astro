@@ -1,0 +1,20 @@
+---
+  interface Props {
+    id:string;
+  }
+
+  const { id } = Astro.props;
+
+  const res = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`);
+  const videoInfo = await res.json();
+  const title = videoInfo?.title;
+
+---
+
+<iframe
+  class="w-full aspect-video relative"
+  src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
+  {title}
+  allow="autoplay; picture-in-picture; clipboard-write"
+  allowfullscreen
+/>

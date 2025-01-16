@@ -1,0 +1,18 @@
+---
+import { getImage } from "astro:assets";
+import grain from "@assets/grain.jpg";
+
+const optimizedBackground = await getImage({ src: grain, format: "webp" });
+---
+
+<div
+  class="absolute inset-0 pointer-events-none opacity-70 mix-blend-overlay hidden sm:block"
+  style={`background-image: url(${optimizedBackground.src});`}
+>
+</div>
+
+<style>
+  div {
+    transform: translate3d(0, 0, 0);
+  }
+</style>

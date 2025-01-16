@@ -1,0 +1,41 @@
+---
+import { getImage } from "astro:assets";
+import sky from "@assets/sky_tile.jpg";
+
+const optimizedSky = await getImage({ src: sky, format: "webp" });
+---
+
+<div class="absolute w-full h-[100%] overflow-hidden z-0">
+  <div class="img absolute w-full h-full" style={`background-image: url(${optimizedSky.src});`}></div>
+</div>
+
+<style>
+  .img {
+    width: 300%;
+    background-repeat: repeat;
+    background-size: 33.33%;
+    animation-name: pan2;
+    animation-duration: 100s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+
+  @keyframes pan {
+    0% {
+      transform: translate3d(-33.33%, 0, 0);
+    }
+    100% {
+      transform: translate3d(0%, 0, 0);
+    }
+  }
+
+  @keyframes pan2 {
+    0% {
+      transform: translateX(-33.33%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+</style>

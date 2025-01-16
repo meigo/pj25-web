@@ -1,0 +1,30 @@
+---
+import { randomRotationClass } from "@lib/utils";
+import ArtistCardContent from "@lib/components/artist/ArtistCardContent.astro";
+
+interface Props {
+  data?: ArtistData;
+}
+
+const { data } = Astro.props;
+
+let rotationClass = randomRotationClass(data.name, -5, 5);
+
+const isVideo = !!data.video_id;
+---
+
+<div
+  class=`mx-auto relative aspect-[5/6] w-4/5 md:w-full overflow-hidden rounded-xl sm:rounded-2xl mb-16 focus-within:border-4 border-white
+  ${rotationClass} ${!isVideo && 'pointer-events-none'}`>
+  {
+    isVideo ? (
+      <a class="group " href={`/video/${data.video_id}`}>
+        <ArtistCardContent {data} />
+      </a>
+    ) : (
+      <div>
+        <ArtistCardContent {data} />
+      </div>
+    )
+  }
+</div>

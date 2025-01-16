@@ -1,0 +1,28 @@
+---
+import "../../app.css";
+import Layout from "../../layouts/MainLayout.astro";
+import { getArtistsSectionData } from "@lib/cms";
+import YtPlayer from "@lib/components/YtPlayer.astro";
+import MediaMenu from "@lib/components/menu/MediaMenu.astro";
+
+export async function getStaticPaths() {
+  const artistsSectionData: ArtistsSectionData = await getArtistsSectionData("et");
+  return artistsSectionData.artists
+    .filter((a) => !!a.video_id)
+    .map((a) => {
+      return { params: { id: a.video_id }, props: { title: a.name } };
+    });
+}
+
+const { id } = Astro.params;
+const { title } = Astro.props;
+---
+
+<Layout {title} noindex nofollow>
+  <div class="fixed inset-0 z-10 flex items-center justify-center">
+    <div class="w-full px-2 max-w-7xl">
+      <YtPlayer {id} />
+    </div>
+    <MediaMenu />
+  </div>
+</Layout>

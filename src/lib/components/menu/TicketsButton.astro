@@ -1,0 +1,67 @@
+---
+import Ticket from "@lib/svg/Ticket.astro";
+
+interface Props {
+  language: Language;
+  href: string;
+  delay?: number | string;
+}
+
+const { language, href, delay = 0 } = Astro.props;
+
+const ariaLabel = language === "et" ? "Osta pilet" : "Buy a ticket";
+---
+
+<a {href} class="outline-none group pointer-events-auto" aria-label={ariaLabel} data-astro-reload>
+  <div class="flex items-center h-16 w-28" style=`animation-delay:${delay}ms;`>
+    <div id="ticket-back" class="absolute">
+      <Ticket
+        {language}
+        class="w-28 transition duration-300 brightness-90 origin-left group-hover:scale-95 -rotate-12 rot group-hover:-rotate-16"
+        textClass="fill-pj-violet group-hover:fill-pj-blue"
+      />
+    </div>
+    <div id="ticket-front" class="absolute">
+      <Ticket
+        {language}
+        class="transition duration-300 origin-left w-28 group-hover:scale-110 rotate-2 group-hover:rotate-6"
+        textClass="fill-pj-violet group-hover:fill-pj-blue"
+        bgClass="fill-pj-yellow  group-focus:fill-white"
+      />
+    </div>
+  </div>
+</a>
+
+<style>
+  a > div {
+    animation: scale-in 0.25s cubic-bezier(0.4, 1.37, 0.57, 1) forwards;
+  }
+
+  #ticket-front {
+    transform-origin: left;
+    animation: rotate-front 0.5s ease-in-out alternate forwards;
+  }
+
+  #ticket-back {
+    transform-origin: left;
+    animation: rotate-bg 0.3s ease-in-out alternate forwards;
+  }
+
+  @keyframes rotate-bg {
+    0% {
+      transform: rotate(12deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes rotate-front {
+    0% {
+      transform: rotate(-6deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+</style>

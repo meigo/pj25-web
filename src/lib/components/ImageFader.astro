@@ -1,0 +1,137 @@
+---
+import Picture from "@lib/components/Picture.astro";
+
+interface Props {
+  data?: PictureData[];
+}
+
+const { data } = Astro.props;
+
+const count = data.length || 0;
+const showTime = 4;
+const fadeTime = 3;
+const totalTime = (showTime + fadeTime) * count;
+const delay = showTime + fadeTime;
+
+// function calc(count: number, showTime: number, fadeTime: number) {
+//   const totalTime = (showTime + fadeTime) * count;
+//   const delay = showTime + fadeTime;
+//   const k1 = 0;
+//   const k2 = Math.round((showTime / totalTime) * 100);
+//   const k3 = Math.round((delay / totalTime) * 100);
+//   const k4 = Math.round(100 - (fadeTime / totalTime) * 100);
+//   const k5 = 100;
+//   console.log(totalTime, delay, k1, k2, k3, k4, k5);
+// }
+
+// calc(2, 4, 3);
+// calc(3, 4, 3);
+// calc(4, 4, 3);
+// calc(5, 4, 3);
+
+// 14 7 0 29 50 79 100
+// 21 7 0 19 33 86 100
+// 28 7 0 14 25 89 100
+// 35 7 0 11 20 91 100
+
+const reversedData = data && data.reverse();
+---
+
+{
+  count > 0 && (
+    <div class="absolute inset-0">
+      {count == 1 ? (
+        <div class="absolute inset-0">
+          <Picture data={data[0]} />
+        </div>
+      ) : (
+        reversedData.map((pictureData, index) => (
+          <div
+            class="absolute inset-0"
+            style={`animation: fade${count} ${totalTime}s infinite; animation-delay:${totalTime - (index + 1) * delay}s;`}
+          >
+            <Picture
+              data={pictureData}
+              sizes="(max-width: 630px) 500px, (max-width: 1250px) 70vw, 100vw"
+              class="absolute inset-0 object-cover w-full h-full max-w-none"
+            />
+          </div>
+        ))
+      )}
+    </div>
+  )
+}
+
+<style is:global>
+  @keyframes fade2 {
+    0% {
+      opacity: 1;
+    }
+    29% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    79% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade3 {
+    0% {
+      opacity: 1;
+    }
+    20% {
+      opacity: 1;
+    }
+    34% {
+      opacity: 0;
+    }
+    88% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade4 {
+    0% {
+      opacity: 1;
+    }
+    15% {
+      opacity: 1;
+    }
+    25% {
+      opacity: 0;
+    }
+    90% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade5 {
+    0% {
+      opacity: 1;
+    }
+    11% {
+      opacity: 1;
+    }
+    20% {
+      opacity: 0;
+    }
+    91% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>

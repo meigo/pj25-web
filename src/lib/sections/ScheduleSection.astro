@@ -1,0 +1,62 @@
+---
+import ContainerSection from "@components/ContainerSection.astro";
+
+interface Props {
+  data?: ScheduleSectionData;
+}
+const { data } = Astro.props;
+---
+
+<ContainerSection id="schedule" color="pj-yellow">
+  <!-- TITLE -->
+  {
+    data.title && (
+      <div class="text-center">
+        <h2 class="text-pj-violet selection:bg-pj-blue selection:text-pj-yellow">{data.title}</h2>
+      </div>
+    )
+  }
+
+  <!-- TEXTS -->
+  {
+    data.text && (
+      <div class="flex justify-center mt-20">
+        <div class="grid grid-cols-1 gap-x-24 gap-y-16 md:grid-cols-2 schedule-section-text">
+          {data.text.map((text) => (
+            <div class="md:justify-self-end selection:bg-pj-blue selection:text-pj-yellow" set:html={text} />
+          ))}
+        </div>
+      </div>
+    )
+  }
+</ContainerSection>
+
+<style lang="postcss">
+  :global(.schedule-section-text a) {
+    @apply underline hover:no-underline;
+  }
+
+  :global(.schedule-section-text p) {
+    @apply text-pj-violet;
+  }
+
+  :global(.schedule-section-text li) {
+    @apply text-pj-violet;
+  }
+
+  :global(.schedule-section-text h3) {
+    @apply text-red-400 pt-4;
+  }
+
+  :global(.schedule-section-text h4) {
+    @apply text-pj-violet pt-4;
+  }
+
+  :global(.schedule-section-text h5) {
+    @apply text-pj-blue;
+  }
+
+  :global(.schedule-section-text p, ul) {
+    @apply mb-4 mt-4;
+  }
+</style>

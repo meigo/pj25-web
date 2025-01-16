@@ -1,0 +1,74 @@
+---
+import AMC from "@lib/svg/AMC.astro";
+import Issey from "@lib/svg/Issey.astro";
+import Luude from "@lib/svg/Luude.astro";
+import Nervo from "@lib/svg/Nervo.astro";
+import Quintino from "@lib/svg/Quintino.astro";
+import A1991 from "@lib/svg/1991.astro";
+import Agatino from "@lib/svg/Agatino.astro";
+import HeroArtist from "./HeroArtist.astro";
+
+interface Props {
+  artistsData: ArtistData[];
+}
+
+const { artistsData } = Astro.props;
+
+let mainArtistsList = ["nervo", "luude", "quintino", "issey cross", "a.m.c", "1991", "agatino romero"];
+
+let mainArtistsData: Record<string, { title: string; slug: string; picture: PictureData }>;
+
+let otherArtistsData: ArtistData[];
+
+function compareByName(a: ArtistData, b: ArtistData) {
+  return a.name.localeCompare(b.name);
+}
+
+const mainArtistsArray = artistsData.filter((item) => mainArtistsList.includes(item.name.toLowerCase()));
+otherArtistsData = artistsData.filter((item) => !mainArtistsList.includes(item.name.toLowerCase()));
+
+// Convert main artists array to object
+mainArtistsData = mainArtistsArray.reduce((obj, artist) => {
+  let id = artist.slug;
+  const newItem = { picture: artist.picture, title: artist.name, slug: artist.slug };
+  return { ...obj, [id]: newItem };
+}, {});
+
+otherArtistsData.sort(compareByName); // Sort by name
+otherArtistsData.sort((f, s) => (f.name.toLowerCase() === "nublu" ? -1 : 1)); //Set Nublu as first item
+---
+
+<div class="flex flex-col items-center">
+  <div class="flex flex-wrap items-center justify-center max-w-4xl mt-6 lg:mt-12">
+    <HeroArtist data={mainArtistsData["nervo"]} class="w-48 sm:w-52"><Nervo class="w-[80%]" /></HeroArtist>
+    <HeroArtist data={mainArtistsData["luude"]} class="w-48" delay="100"><Luude class="w-[95%]" /></HeroArtist>
+    <HeroArtist data={mainArtistsData["quintino"]} class="w-48 sm:w-56" delay="200"><Quintino class="w-[90%]" /></HeroArtist>
+    <HeroArtist data={mainArtistsData["amc"]} class="w-48 sm:w-40" delay="400"><AMC class="w-[80%]" /></HeroArtist>
+    <HeroArtist data={mainArtistsData["issey-cross"]} class="w-48 sm:w-36" delay="600"><Issey class="w-[95%]" /></HeroArtist>
+    <HeroArtist data={mainArtistsData["1991"]} class="w-48 sm:w-40" delay="800"><A1991 class="w-[80%]" /></HeroArtist>
+    <HeroArtist data={mainArtistsData["agatino-romero"]} class="w-48 sm:w-40" delay="1000"><Agatino class="w-[95%]" /></HeroArtist>
+  </div>
+
+  <div
+    id="local-artists"
+    class="max-w-4xl mt-16 text-xl tracking-wide text-center sm:text-3xl font-vodka text-pj-cyan sm:mt-24 selection:text-pj-blue selection:bg-pj-yellow">
+    {
+      otherArtistsData.map((artist, index) => (
+        <span>
+          {index == 0 && "▫ "}
+          <a class="outline-none hover:text-white focus:text-white" href={`#${artist.slug}`}>
+            {artist.name}
+          </a>
+          ▫
+        </span>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  #local-artists {
+    opacity: 0;
+    animation: fade-in 1s 1s ease-out forwards;
+  }
+</style>

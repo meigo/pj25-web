@@ -1,0 +1,47 @@
+---
+import { getSiteData, getMenuData, getBackgroundsData, getArtistsSectionData, getScheduleSectionData, getInfoSectionData } from "@lib/cms";
+import Layout from "../layouts/MainLayout.astro";
+import Menu from "@lib/components/menu/Menu.astro";
+import FooterSection from "@lib/sections/FooterSection.astro";
+import ScheduleSection from "@lib/sections/ScheduleSection.astro";
+import HeroSection from "@lib/sections/HeroSection.astro";
+import ArtistsSection from "@lib/sections/ArtistsSection.astro";
+import InfoSection from "@lib/sections/InfoSection.astro";
+import ImageSection from "@lib/sections/ImageSection.astro";
+import ContactSection from "./sections/ContactSection.astro";
+
+interface Props {
+  language: Language;
+}
+
+const { language } = Astro.props;
+
+const siteData = await getSiteData(language); // WILL BE SAVED TO STORE
+const menuData = await getMenuData(language);
+const artistsSectionData = await getArtistsSectionData(language);
+const scheduleSectionData = await getScheduleSectionData(language);
+const infoSectionData = await getInfoSectionData(language);
+const imageSectionsData = await getBackgroundsData();
+---
+
+<Layout {language} title={siteData.title} og schema>
+  <h1 class="absolute text-xs text-pj-blue -top-10">{siteData.title}</h1>
+
+  <HeroSection artistsData={artistsSectionData.artists} />
+
+  <ArtistsSection data={artistsSectionData} />
+
+  {imageSectionsData.section1.length && <ImageSection data={imageSectionsData.section1} />}
+
+  <ScheduleSection data={scheduleSectionData} />
+
+  {imageSectionsData.section2.length && <ImageSection data={imageSectionsData.section2} />}
+
+  <InfoSection data={infoSectionData} />
+
+  <ContactSection {language} />
+
+  <FooterSection />
+
+  <Menu {language} data={menuData} />
+</Layout>

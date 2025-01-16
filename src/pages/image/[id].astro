@@ -1,0 +1,34 @@
+---
+import "../../app.css";
+import { getImagePagePictureData } from "@lib/cms-images";
+import { infoImages } from "@lib/store";
+import Layout from "../../layouts/MainLayout.astro";
+import MediaMenu from "@lib/components/menu/MediaMenu.astro";
+import Picture from "@lib/components/Picture.astro";
+
+export async function getStaticPaths() {
+  return infoImages.get().map(({ id, title }) => {
+    return {
+      params: { id },
+      props: { title },
+    };
+  });
+}
+
+const { id } = Astro.params;
+
+const data = await getImagePagePictureData(id);
+
+const { title } = Astro.props;
+---
+
+<Layout {title} noindex nofollow>
+  {
+    data && (
+      <div class="fixed inset-0 z-10">
+        <Picture {data} class="absolute object-contain w-full h-full pointer-events-none max-w-none" />
+        <MediaMenu />
+      </div>
+    )
+  }
+</Layout>

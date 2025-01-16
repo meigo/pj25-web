@@ -1,0 +1,46 @@
+---
+import Clock from "@lib/svg/Clock.astro";
+import Info from "@lib/svg/Info.astro";
+import Artist from "@lib/svg/Note.astro";
+import Ticket2 from "@lib/svg/Ticket2.astro";
+import Mail from "@lib/svg/Mail.astro";
+
+interface Props {
+  href: string;
+  label: string;
+  icon: Icons;
+  delay?: number | string;
+  class?: string;
+  reload?: boolean;
+}
+
+const { href, label, icon, delay = 0, class: className = "bg-pj-yellow", reload = false } = Astro.props;
+
+const isReload = reload ? { "data-astro-reload": "" } : {};
+---
+
+<a {href} class="outline-none group" aria-label={label} {...isReload}>
+  <div
+    class=`mt-2 pointer-events-auto  w-14 xs:w-16 xl:h-16 rounded-r-3xl xl:rounded-r-full xl:w-40 group-focus:bg-white ${className}`
+    style=`animation-delay:${delay}ms;`>
+    <div
+      class="flex items-center py-2 xs:py-4 justify-center w-full xl:h-full text-lg font-bold xl:justify-end text-pj-violet group-hover:text-pj-blue vertical-rl xl:horizontal-tb">
+      <span class="pt-1 text-sm font-bold uppercase xs:text-base xs:text-md xl:text-xl xl:mr-1 xl:pt-0 label">{label}</span>
+
+      <div class="hidden xl:mr-4 group-hover:scale-105 xl:block">
+        {icon === "artists" && <Artist class="w-8 text-pj-violet group-hover:text-pj-blue" />}
+        {icon === "info" && <Info class="w-8 text-pj-violet group-hover:text-pj-blue" />}
+        {icon === "schedule" && <Clock class="w-8 text-pj-violet group-hover:text-pj-blue" />}
+        {icon === "ticket" && <Ticket2 class="w-8 -rotate-90 text-pj-violet group-hover:text-pj-blue" />}
+        {icon === "mail" && <Mail class="w-7 text-pj-violet group-hover:text-pj-blue" />}
+      </div>
+    </div>
+  </div>
+</a>
+
+<style>
+  a > div {
+    opacity: 0;
+    animation: slide-fade-right 0.3s cubic-bezier(0.5, 1.5, 0.5, 1) forwards;
+  }
+</style>

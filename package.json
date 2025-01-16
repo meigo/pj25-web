@@ -1,0 +1,35 @@
+{
+  "name": "pj24-astro-web",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build && node process-html.mjs",
+    "preview": "astro preview",
+    "astro": "astro",
+    "icons": "node icons/generate.js"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/tailwind": "^5.1.4",
+    "astro": "^5.1.7",
+    "astro-particles": "^2.10.0",
+    "cross-env": "^7.0.3",
+    "esm-seedrandom": "^3.0.5",
+    "favicons": "^7.1.5",
+    "fs-extra": "^11.2.0",
+    "globby": "^14.0.0",
+    "html-minifier": "^4.0.0",
+    "nanostores": "^0.11.3",
+    "node-html-parser": "^7.0.1",
+    "rellax": "^1.12.1",
+    "schema-dts": "^1.1.2",
+    "tailwindcss": "^3.4.17",
+    "tsparticles-slim": "^2.12.0",
+    "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10"
+  }
+}

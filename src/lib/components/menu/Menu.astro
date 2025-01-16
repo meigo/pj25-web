@@ -1,0 +1,66 @@
+---
+import MenuButton from "./MenuButton.astro";
+import TicketsButton from "./TicketsButton.astro";
+import AButton from "./AButton.astro";
+import EN from "@lib/svg/EN.astro";
+import EE from "@lib/svg/EE.astro";
+import FB from "@lib/svg/FB.astro";
+import Instagram from "@lib/svg/Instagram.astro";
+
+interface Props {
+  language: Language;
+  data: MenuData;
+}
+
+const { language, data } = Astro.props;
+---
+
+<nav class="z-20">
+  <div class="fixed top-0 left-0">
+    <div class="flex flex-col p-1 xl:flex-row">
+      <AButton href="#" ariaLabel="Instagram" class="m-1">
+        <FB class="text-white w-7 group-hover/slot:text-pj-violet" />
+      </AButton>
+      <AButton href="#" ariaLabel="Facebook" class="m-1">
+        <Instagram class="text-white w-7 group-hover/slot:text-pj-violet" />
+      </AButton>
+      {
+        language === "en" ? (
+          <AButton href={"/"} ariaLabel="Eesti keel" class="m-1">
+            <EE class="w-7 fill-white group-hover/slot:fill-pj-violet" />
+          </AButton>
+        ) : (
+          <AButton href={"/en"} ariaLabel="English" class="m-1">
+            <EN class="w-7 fill-white group-hover/slot:fill-pj-violet" />
+          </AButton>
+        )
+      }
+    </div>
+  </div>
+
+  {
+    data.tickets && (
+      <div class="fixed top-8 right-4">
+        <div class="hidden ml-9 mb-7 xl:block">
+          <TicketsButton href="#" {language} />
+        </div>
+      </div>
+    )
+  }
+
+  <div id="anchors" class="fixed inset-y-0 left-0 flex flex-col justify-center overflow-hidden pointer-events-none top-28 xl:top-0">
+    <div class="relative -left-2">
+      {
+        data.tickets && (
+          <span class="xl:hidden">
+            <MenuButton href="#" label={data.tickets.title} icon={"ticket"} class="bg-yellow-400" reload />
+          </span>
+        )
+      }
+      {data.artists && <MenuButton href="#artists" label={data.artists.title} icon={"artists"} delay="100" />}
+      {data.schedule && <MenuButton href="#schedule" label={data.schedule.title} icon={"schedule"} delay="150" />}
+      {data.info && <MenuButton href="#info" label={data.info.title} icon={"info"} delay="200" />}
+      {data.contact && <MenuButton href="#contact" label={data.contact.title} icon={"mail"} delay="250" />}
+    </div>
+  </div>
+</nav>

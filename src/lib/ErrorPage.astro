@@ -1,0 +1,33 @@
+---
+import "../app.css";
+import BgSky from "@lib/components/hero/BgSky.astro";
+import GrainOverlay from "@lib/components/GrainOverlay.astro";
+
+interface Props {
+  language: Language;
+}
+
+const { language = "et" } = Astro.props;
+
+const message = language === "et" ? "Lehte ei leitud." : "The page could not be found.";
+const buttonLabel = language === "et" ? "Tagasi pealehele" : "Go back to Home";
+---
+
+<section class="bg-pj-blue fixed w-full h-full">
+  <BgSky />
+
+  <div class="min-h-screen relative flex flex-grow items-center justify-center">
+    <div class="text-center">
+      <h1 class="text-8xl text-white selection:bg-pj-yellow selection:text-pj-blue font-vodka">404</h1>
+      <p class="text-white text-2xl selection:bg-pj-yellow selection:text-pj-blue">{message}</p>
+      <a
+        href="/"
+        class="mt-4 inline-block rounded bg-pj-yellow px-4 py-2 font-semibold text-pj-blue hover:text-pj-blue-light select-none uppercase"
+      >
+        {buttonLabel}
+      </a>
+    </div>
+  </div>
+
+  <GrainOverlay />
+</section>

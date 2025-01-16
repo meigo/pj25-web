@@ -1,0 +1,29 @@
+---
+import HeroArtists from "@lib/components/hero/HeroArtists.astro";
+import Pj24Logo from "@lib/svg/Pj24Logo.astro";
+import BgSky from "@lib/components/hero/BgSky.astro";
+import GrainOverlay from "@lib/components/GrainOverlay.astro";
+import FireParticles from "@lib/components/particles/FireParticles.astro";
+
+interface Props {
+  artistsData?: ArtistData[];
+}
+
+const { artistsData } = Astro.props;
+
+const ariaLabel = "Pühajärve jaanituli 2024";
+---
+
+<section class="bg-pj-blue relative">
+  <BgSky />
+
+  <FireParticles />
+
+  <div class="flex flex-col items-center max-w-5xl pb-64 pr-6 pl-16 sm:mx-auto sm:px-14 lg:px-16 z-1">
+    <Pj24Logo class="max-w-xl pt-2 lg:max-w-2xl opacity-95" {ariaLabel} />
+
+    {artistsData && artistsData.length && <HeroArtists {artistsData} />}
+  </div>
+
+  <GrainOverlay />
+</section>
