@@ -3,8 +3,8 @@ import { infoImages } from "@lib/store";
 import { parse } from "node-html-parser";
 import { CMS_API_KEY, API_URL, UPLOAD_URL } from "../config.js";
 
-const headers = { "content-type": "text/html; charset=utf-8", "api-key": CMS_API_KEY };
-const jsonHeaders = { "content-type": "application/json", "api-key": CMS_API_KEY };
+const headers = { "content-type": "text/html; charset=utf-8" };
+const jsonHeaders = { "content-type": "application/json" };
 
 /**
  * @param {string} id
