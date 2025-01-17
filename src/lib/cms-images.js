@@ -46,8 +46,6 @@ export async function getArtistPictureData(data) {
     { type: "jpeg", srcset: await getImageSource(data._id, sizes, "jpeg") },
   ];
 
-  console.log(data.path);
-
   /** @type {PictureData} */
   const pictureData = {
     img: { src: UPLOAD_URL + data.path, w: data.width, h: data.height, alt: capitalize(data.title) + " pilt" },

@@ -12,11 +12,10 @@ interface Props {
 const { data } = Astro.props;
 
 const isVideo = !!data.video_id;
-const country = data.country ? " (" + data.country + ")" : "";
 ---
 
 <div class="artist-card-content">
-  <div class="absolute inset-0 bg-pj-violet-light"></div>
+  <div class="absolute inset-0 bg-pj-pink"></div>
 
   <div class="absolute inset-0 transition duration-300 group-hover:scale-105 group-focus:scale-105">
     {
@@ -36,13 +35,12 @@ const country = data.country ? " (" + data.country + ")" : "";
 
   <div class="absolute bottom-0 left-0 flex items-center justify-center w-full h-1/5">
     <div
-      class="font-vodka text-center uppercase mb-1 px-2
+      class="font-bds text-center uppercase mb-0 px-2
               text-[6vw] leading-[7vw]
               md:text-[3.5vw] md:leading-[3vw]
               lg:text-[2.5vw] lg:leading-[2vw]
-              xl:text-3xl xl:leading-7"
-    >
-      <span class="text-pj-violet">{data.name}{country}</span>
+              xl:text-2xl xl:leading-5">
+      <span class="text-pj-blue">{data.name}</span>
     </div>
   </div>
 </div>

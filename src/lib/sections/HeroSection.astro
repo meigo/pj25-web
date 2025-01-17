@@ -1,8 +1,9 @@
 ---
 import HeroArtists from "@lib/components/hero/HeroArtists.astro";
 import Pj24Logo from "@lib/svg/Pj24Logo.astro";
-import BgSky from "@lib/components/hero/BgSky.astro";
-import GrainOverlay from "@lib/components/GrainOverlay.astro";
+import Bg from "@lib/components/hero/Bg.astro";
+// import BgSky from "@lib/components/hero/BgSky.astro";
+// import GrainOverlay from "@lib/components/GrainOverlay.astro";
 import FireParticles from "@lib/components/particles/FireParticles.astro";
 
 interface Props {
@@ -15,7 +16,7 @@ const ariaLabel = "Pühajärve jaanituli 2024";
 ---
 
 <section class="bg-pj-blue relative">
-  <BgSky />
+  <Bg />
 
   <FireParticles />
 
@@ -25,5 +26,5 @@ const ariaLabel = "Pühajärve jaanituli 2024";
     {artistsData && artistsData.length && <HeroArtists {artistsData} />}
   </div>
 
-  <GrainOverlay />
+  <!-- <GrainOverlay /> -->
 </section>

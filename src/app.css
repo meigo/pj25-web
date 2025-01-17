@@ -5,25 +5,19 @@
 
 @layer base {
   @font-face {
-    font-family: "VodkaSans";
+    font-family: "BDSupper";
     font-display: swap;
-    src: url("/vodkasans-regular.woff") format("woff");
-    src: url("/vodkasans-regular.woff2") format("woff2");
+    font-weight: normal;
+    src: url("/bdsupper-regular.woff") format("woff");
+    src: url("/bdsupper-regular.woff2") format("woff2");
   }
 
   @font-face {
-    font-family: "VagRounded";
+    font-family: "BDSupper";
     font-display: swap;
-    src: url("/vag-rounded-light.woff") format("woff");
-    src: url("/vag-rounded-light.woff2") format("woff2");
-    font-weight: normal;
-  }
-  @font-face {
-    font-family: "VagRounded";
-    font-display: swap;
-    src: url("/vag-rounded-bold.woff") format("woff");
-    src: url("/vag-rounded-bold.woff2") format("woff2");
     font-weight: bold;
+    src: url("/bdsupper-bold.woff") format("woff");
+    src: url("/bdsupper-bold.woff2") format("woff2");
   }
 
   .smooth-scroll {
@@ -36,7 +30,7 @@
   }
 
   body {
-    @apply font-vag text-xl m-0 p-0;
+    @apply font-bds text-xl m-0 p-0;
   }
 
   ul {
@@ -48,7 +42,7 @@
   h3,
   h4,
   h5 {
-    @apply font-vodka;
+    @apply font-bds;
   }
 
   h1 {

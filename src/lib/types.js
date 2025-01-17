@@ -42,9 +42,6 @@
  * @typedef {Object} ArtistData
  * @property {string} name
  * @property {string} slug
- * @property {string} [country]
- * @property {Date} date
- * @property {"pealava" | "rannalava" | "dj"} stage
  * @property {PictureData} [picture]
  * @property {string} [video_id]
  */
