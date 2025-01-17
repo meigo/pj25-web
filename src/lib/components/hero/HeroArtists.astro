@@ -38,6 +38,26 @@ otherArtistsData.sort(compareByName); // Sort by name
 otherArtistsData.sort((f, s) => (f.name.toLowerCase() === "nublu" ? -1 : 1)); //Set Nublu as first item
 ---
 
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  function init() {
+    if (document.querySelector("#local-artists")) {
+      const heroSection = document.getElementById("local-artists") as HTMLElement;
+      // gsap.set(heroSection, { opacity: 0 });
+      // gsap.to(heroSection, { duration: 3, delay: 0, opacity: 1, ease: "power4.out" });
+      gsap.from(heroSection, { duration: 3, delay: 0, opacity: 0, y: 200, ease: "power4.out" });
+    }
+  }
+
+  document.addEventListener("astro:after-swap", () => {
+    init();
+  });
+
+  init();
+</script>
+
 <div class="flex flex-col items-center">
   <div class="flex flex-wrap items-center justify-center max-w-4xl mt-6 lg:mt-12">
     <!-- <HeroArtist data={mainArtistsData["nervo"]} class="w-48 sm:w-52"><Nervo class="w-[80%]" /></HeroArtist>

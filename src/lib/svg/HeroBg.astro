@@ -1,47 +1,110 @@
+<script>
+  import { gsap } from "gsap";
+  // import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  function init() {
+    if (document.querySelector("#ground")) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          // trigger: "#ground",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      gsap.utils.toArray(".parallax").forEach((layer: SVGElement) => {
+        const depth = parseFloat(layer.dataset.depth);
+        // const movement = -(layer.offsetHeight * depth);
+
+        const movement = -(300 * depth);
+        tl.to(layer, { y: movement, ease: "none" }, 0);
+      });
+    }
+
+    // if (document.querySelector("#sun")) {
+    //   const heroSection = document.getElementById("sun") as HTMLElement;
+    //   gsap.from(heroSection, { duration: 5, delay: 0, opacity: 0, y: 400, ease: "power4.out" });
+    // }
+  }
+
+  document.addEventListener("astro:after-swap", () => {
+    init();
+  });
+
+  init();
+</script>
+
+<style>
+  path {
+    position: fixed;
+  }
+</style>
+
 <svg
   xmlns="http://www.w3.org/2000/svg"
   xml:space="preserve"
   style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"
-  viewBox="0 0 3000 1920"
-  ><path id="Bg" d="M3000 1919.48V-.52L0 .005v1920l3000-.525Z" style="fill:url(#_Radial1)"></path><path
+  viewBox="0 0 3000 1920">
+  <path id="bg" d="M3000 1919.48V-.52L0 .005v1920l3000-.525Z" style="fill:url(#_Radial1)" class="parallax" data-depth="0.0010"></path>
+  <path
     id="sun"
     d="M1941.79 1207.26c0 242.856-197.168 440.023-440.023 440.023-242.856 0-440.023-197.167-440.023-440.023 0-242.855 197.167-440.023 440.023-440.023 242.855 0 440.023 197.168 440.023 440.023Z"
-    style="fill:url(#_Linear2)"></path><g id="ground"
-    ><path id="ground1" d="M0 1199.02h3000v720.451H0z" style="fill:url(#_Radial3)"></path><path
+    style="fill:url(#_Linear2)"
+    class="parallax"
+    data-depth="0.01"></path>
+  <g id="ground">
+    <path id="ground1" d="M0 1199.02h3000v720.451H0z" style="fill:url(#_Radial3)"></path>
+    <path
       id="hill_l_5"
       d="M0 1156.94h816.382s-88.626-168.055-119.185-210.498c-30.527-42.397-97.129-53.082-105.035-116.329-7.906-63.247-43.713-83.267-66.63-107.049-41.047-42.596-98.212-60.279-168.52-70.615C265.095 638.936 83.603 711.257 0 658.684v498.256Z"
-      style="fill:url(#_Linear4);fill-rule:nonzero"></path><path
+      style="fill:url(#_Linear4);fill-rule:nonzero"
+      class="parallax"
+      data-depth="0.10"></path>
+    <path
       id="hill_l_4"
       d="m248.4 1212.87 1.6 14.976 844.156.538-101.666-96.421c-67.764-46.606-121.394-67.471-156.988-100.817-36.551-34.242-100.59-91.262-151.008-84.706-98.24 12.775-116.79-29.821-218.275-5.157C331.228 974.09 262.735 1148.777 248.4 1212.87Z"
-      style="fill:url(#_Linear5);fill-rule:nonzero"></path><path
+      style="fill:url(#_Linear5);fill-rule:nonzero"></path>
+    <path
       id="hill_l_3"
       d="M617.481 989.159c-95.381 7.208-189.436 71.57-225.301 82.261C263.409 1109.807 7.26 1103.452 0 1108.077v141.09l1230.2-3.995s-18.636-28.8-62.683-45.741c-19.926-7.664-38.811-2.153-55.716 3.357-20.464 6.671-38.025 13.342-51.013-3.357-23.718-30.494-33.882-40.659-66.07-38.965-32.188 1.695-30.494-45.741-67.764-66.07-37.271-20.33-125.365-44.047-157.554-60.988-26.149-13.763-87.021-49.153-151.915-44.249Z"
-      style="fill:url(#_Linear6);fill-rule:nonzero"></path><path
+      style="fill:url(#_Linear6);fill-rule:nonzero"></path>
+    <path
       id="hill_l_2"
       d="M919.409 1157.92c-27.107 10.165-63.53 65.223-109.271 60.988-45.741-4.236-106.729 51.671-106.729 51.671h559.058s2.411-4.348-21.177-5.93c0 0-11.081 2.718-46.588-6.777-35.507-9.494-78.777-49.976-127.059-44.046-23.503 2.886-52.825-12.692-79.861-28.271-24.83-14.309-47.733-28.618-62.419-28.619-2.172-.001-4.162.312-5.954.984Z"
-      style="fill:url(#_Linear7);fill-rule:nonzero"></path><path
+      style="fill:url(#_Linear7);fill-rule:nonzero"></path>
+    <path
       id="hill_l_1"
       d="M0 1351.16s1312.46 10.632 1327.06 8.808c18.071-2.259-26.997-7.806-55.059-11.294-37.836-4.704-104.188-25.412-142.305-35.576-38.118-10.165-69.459-51.671-125.365-46.589-55.906 5.082-44.894-41.506-104.188-57.6-59.294-16.094-50.823-62.958-88.094-61.973-37.271.985-102.776 38.872-153.599-28.212-50.691-66.909-115.346-91.506-184.931-105.199C363.778 991.93.005 989.155.005 989.155v362.005Z"
-      style="fill:url(#_Linear8);fill-rule:nonzero"></path><path
+      style="fill:url(#_Linear8);fill-rule:nonzero"></path>
+    <path
       id="hill_r_5"
       d="M2374.58 892.796c-39.343-8.471-150.097 288.419-273.896 306.228h899.318V652.741s-124.418 118.95-287.091 123.318c-68.136 1.83-148.271-23.379-196.945-12.103-52.491 12.159-103.449 137.008-141.386 128.84Z"
-      style="fill:url(#_Linear9);fill-rule:nonzero"></path><path
+      style="fill:url(#_Linear9);fill-rule:nonzero"></path>
+    <path
       id="hill_r_4"
       d="M2130.66 1077.62c-32.753 22.588-73.412 72.283-106.165 69.321-32.752-2.961-109.553 39.102-169.411 66.208l705.59 2.093-9.51-.029c-77.005-24.354-178.006-144.369-219.47-144.369-42.917 0-55.341-47.435-93.74-66.635-4.545-2.272-9.054-3.295-13.534-3.295-33.37.004-64.884 56.791-93.76 76.706Z"
-      style="fill:url(#_Linear10);fill-rule:nonzero"></path><path
+      style="fill:url(#_Linear10);fill-rule:nonzero"></path>
+    <path
       id="hill_r_2"
       d="M2076.93 1138.44c-40.658 20.329-64.376 57.6-116.329 70.023-51.953 12.423-175.16 32.635-126.494 33.882 44.047 1.13 577.128 10.165 577.128 10.165s7.906-40.659-79.059-53.082c-86.964-12.424-151.34-45.177-185.222-81.317-10.427-11.122-17.215-15.399-22.804-15.398-12.574.003-19.073 21.654-47.22 35.727Z"
-      style="fill:url(#_Linear11);fill-rule:nonzero"></path><path
+      style="fill:url(#_Linear11);fill-rule:nonzero"></path>
+    <path
       id="hill_r_21"
       d="M2251.92 1223.15c-25.976 23.718-106.164-13.553-160.376-18.07-54.211-4.518-117.459 31.623-155.858 56.471-38.401 24.847-204.88 36.621-156.424 38.399 36.175 1.328 932.805 6.461 1220.74 8.938V959.739c-155.234-5.483-387.158 116.846-439.321 121.21-91.118 7.622-117.12-53.75-168.58-30.05-51.46 23.7-115.686 149.889-140.178 172.251Z"
-      style="fill:url(#_Linear12);fill-rule:nonzero"></path><path
+      style="fill:url(#_Linear12);fill-rule:nonzero"></path>
+    <path
       id="hill_r_1"
       d="M2291.36 1243.35c-29.364 16.94-132.141 81.317-186.352 54.211-54.212-27.106-261.943 45.095-326.4 59.858-53.324 12.215 86.49 7.854 822.917 17.88-22.856-21.159-132.78-48.746-213.036-169.22-10.204-15.317-24.813-17.05-34.234-17.049-27.838.004-40.955 41.662-62.895 54.32Z"
-      style="fill:url(#_Linear13);fill-rule:nonzero"></path><path
+      style="fill:url(#_Linear13);fill-rule:nonzero"></path>
+    <path
       id="ground_f"
       d="m0 1919.48 3000 .525v-677.842c-5.218-.029-242.744 52.111-383.127 56.26-88.967 2.63-150.769-64.285-258.239-21.131-38.939 15.636-69.143 49.222-96.14 35.826-51.953-25.778-102.812 31.984-144.564 33.938-41.754 1.954-125.365-22.842-181.836-33.007-27.008-4.861-47.041 10.169-65.164 25.2-19.77 16.396-37.269 32.793-59.071 23.365-41.788-18.071-59.859 14.682-90.353 22.588-30.493 7.906-85.886 14.005-243.952 18.07-63.127 1.625-131.491-9.555-192.692-20.735-71.416-13.046-133.081-26.092-165.296-18.794-59.824 13.553-74.576-37.27-129.917-44.046-27.456-3.362-50.743 11.068-72.617 25.497-22.217 14.654-42.977 29.309-65.171 25.326-44.047-7.906-212.91-112.058-322.253-105.275C230.565 1283.795 0 1224.218 0 1224.218v695.262Z"
-      style="fill:url(#_Linear14);fill-rule:nonzero"></path></g
-  ><defs
+      style="fill:url(#_Linear14);fill-rule:nonzero"
+      class="parallax"
+      data-depth="1.5"></path>
+  </g>
+  <defs
     ><linearGradient
       id="_Linear2"
       x1="0"
