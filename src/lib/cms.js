@@ -3,7 +3,7 @@ import { siteData } from "@lib/store";
 import { getArtistPictureData, getImagePagePictureData, getInfoSectionTextWithPictures } from "@lib/cms-images";
 import { CMS_UPLOAD_PATH, CMS_URL, CMS_API_KEY, API_URL } from "../config.js";
 
-const headers = { "content-type": "application/json", "api-key": CMS_API_KEY };
+const headers = { "content-type": "application/json" };
 
 /**
  * @param {Language} language
