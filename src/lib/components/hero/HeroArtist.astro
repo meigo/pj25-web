@@ -22,9 +22,11 @@ const { class: className, data, delay = 0 } = Astro.props;
         </div>
       </div>
 
-      <div class="-rotate-6 left-2 flex items-center justify-center bg-red-500">
+      <!-- <div class="-rotate-6 left-2 flex items-center justify-center bg-red-500">
         <slot />
-      </div>
+      </div> -->
+
+      <slot />
     </div>
   </div>
 </a>
