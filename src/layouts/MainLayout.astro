@@ -24,10 +24,7 @@ const langBase = `${base}${language === "en" ? "en/" : ""}`;
 ---
 
 <script>
-  // VIEWTRANSITIONS FIX
   document.addEventListener("astro:after-swap", () => {
-    // if (history.scrollRestoration) history.scrollRestoration = "auto";
-
     document.documentElement.classList.add("smooth-scroll");
 
     const backButton: HTMLButtonElement = document.querySelector("[data-back-button]");
@@ -55,17 +52,34 @@ const langBase = `${base}${language === "en" ? "en/" : ""}`;
     <link rel="icon" type="image/png" sizes="48x48" href=`/favicon-48x48.png` />
     <meta name="theme-color" content="#FFF" />
     <meta name="application-name" content="Pühajärve jaanituli 2024" />
+
     <link rel="canonical" href={langBase} />
     <link rel="alternate" hreflang="et" href={base} />
     <link rel="alternate" hreflang="en" href=`${base}en/` />
     <title>{title}</title>
     {data.description && <meta name="description" content={data.description} />}
     {data.keywords && <meta name="keywords" content={data.keywords.join(", ")} />}
-    <meta name="robots" content="noindex, nofollow" />
+    <meta name="robots" content={`${noindex ? "noindex" : "index"}, ${nofollow ? "nofollow" : "follow"}`} />
     <meta name="robots" content="max-image-preview:large" />
     <meta name="google" content="nositelinkssearchbox" />
 
-    <ClientRouter />
+    <!-- OPEN GRAPH -->
+    {
+      og && (
+        <>
+          <meta property="og:type" content="website" />
+          <meta property="og:locale:alternate" content="et_EE" />
+          <meta property="og:locale:alternate" content="en_GB" />
+          <meta property="og:title" content={title} />
+          <meta property="og:url" content={langBase} />
+          {data.description && <meta property="og:description" content={data.description} />}
+          {data.ogImage && <meta property="og:image" content={data.ogImage} />}
+        </>
+      )
+    }
+
+    <!-- DISABLE FALLBACK, CONFLICTS WITH LENIS -->
+    <ClientRouter fallback="none" />
   </head>
 
   <!-- SMOOTH SCROLL ONLY FOR ANCHOR NAVIGATION -->

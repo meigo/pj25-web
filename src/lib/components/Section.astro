@@ -1,6 +1,6 @@
 ---
 import BubbleBorder from "@lib/svg/BubbleBorder.astro";
-// import GrainOverlay from "./GrainOverlay.astro";
+import GrainOverlay from "./GrainOverlay.astro";
 
 interface Props {
   id?: string;
@@ -14,9 +14,17 @@ const { id = "", color = "black", bubbleBorder = true } = Astro.props;
 <section {id} class="relative -mt-32">
   {bubbleBorder && <BubbleBorder class={`fill-${color}`} />}
 
-  <div class={`pt-16 lg:pt-32 pb-32 lg:pb-48 bg-${color}`}>
+  <!-- <div class={`pt-16 lg:pt-32 pb-32 lg:pb-48 bg-${color}`}> -->
+  <div class={`pt-16 lg:pt-32 pb-32 lg:pb-48 grad`}>
     <slot />
   </div>
 
-  <!-- <GrainOverlay /> -->
+  <GrainOverlay />
 </section>
+
+<style>
+  .grad {
+    background: rgb(255, 132, 203);
+    background: radial-gradient(circle at center -250px, rgba(255, 123, 172, 1) 10%, rgba(0, 0, 255, 1) 20%, rgba(255, 123, 172, 1) 50%);
+  }
+</style>

@@ -5,10 +5,10 @@
 // const optimizedSky = await getImage({ src: sky, format: "webp" });
 
 // import bg from "@assets/hero/bg.svg?raw";
-import HeroBg from "@lib/svg/HeroBg.astro";
+import HeroBg from "@lib/components/hero/HeroBg.astro";
 ---
 
-<div class="absolute w-full h-[100%] overflow-hidden z-0">
+<div class="absolute w-[1000px] min-w-[1000px] h-[100%] mx-auto overflow-hidden z-0">
   <HeroBg />
   <!-- <Fragment set:html={bg} /> -->
   <!-- <div class="img absolute w-full h-full" style={`background-image: url(${optimizedSky.src});`}></div> -->

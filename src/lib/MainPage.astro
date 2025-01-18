@@ -27,8 +27,21 @@ const imageSectionsData = await getBackgroundsData();
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import Lenis from "lenis";
 
   gsap.registerPlugin(ScrollTrigger);
+
+  //***************************************************/
+  // SMOOTH SCROLL
+  const lenis = new Lenis();
+
+  function raf(time: number) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  //***************************************************/
 
   document.addEventListener("astro:after-swap", () => {
     let triggers = ScrollTrigger.getAll();
