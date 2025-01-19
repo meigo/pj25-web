@@ -20,28 +20,13 @@
     src: url("/bdsupper-bold.woff2") format("woff2");
   }
 
-  @font-face {
-    font-family: "VagRounded";
-    font-display: swap;
-    src: url("/vag-rounded-light.woff") format("woff");
-    src: url("/vag-rounded-light.woff2") format("woff2");
-    font-weight: normal;
-  }
-  @font-face {
-    font-family: "VagRounded";
-    font-display: swap;
-    src: url("/vag-rounded-bold.woff") format("woff");
-    src: url("/vag-rounded-bold.woff2") format("woff2");
-    font-weight: bold;
-  }
-
   /* .smooth-scroll {
     scroll-behavior: smooth;
   } */
 
   html,
   body {
-    @apply bg-black h-full m-0;
+    @apply bg-black h-full m-0 selection:bg-pj-mint selection:text-pj-blue;
   }
 
   body {
@@ -52,11 +37,15 @@
     @apply list-disc;
   }
 
+  a,
+  li,
+  p,
   h1,
   h2,
   h3,
   h4,
-  h5 {
+  h5,
+  div {
     @apply font-bds;
   }
 
@@ -66,7 +55,7 @@
 
   /* SECTION TITLES */
   h2 {
-    @apply text-14vw md:text-16vw lg:text-8xl leading-normal;
+    @apply text-14vw md:text-10vw lg:text-8xl leading-normal;
   }
 
   h3 {

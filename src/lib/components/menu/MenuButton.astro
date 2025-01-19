@@ -22,11 +22,11 @@ const isAnchor = href.substring(0, 1) === "#";
 
 <a {href} class="outline-none group menu-item" class:list={[{ "menu-anchor": isAnchor }]} aria-label={label} {...isReload}>
   <div
-    class=`mt-2 pointer-events-auto  w-14 xs:w-16 xl:h-16 border-4 border-pj-blue rounded-r-3xl xl:rounded-r-full xl:w-40 group-focus:bg-white ${className}`
+    class=`mt-1 xl:mt-2 pointer-events-auto  w-14 xs:w-16 xl:h-16 border-4 border-pj-blue rounded-r-3xl xl:rounded-r-full xl:w-40 group-focus:bg-white ${className}`
     style=`animation-delay:${delay}ms;`>
     <div
-      class="flex items-center py-2 xs:py-4 justify-center w-full xl:h-full text-lg font-bold xl:justify-end text-pj-blue group-hover:text-white vertical-rl xl:horizontal-tb">
-      <span class="pt-1 text-sm font-bold font-bds uppercase xs:text-base xs:text-md xl:text-xl xl:mr-1">{label}</span>
+      class="flex items-center py-[6px] xl:py-2 xs:py-4 justify-center w-full xl:h-full text-lg font-bold xl:justify-end text-pj-blue group-hover:text-white vertical-rl xl:horizontal-tb">
+      <span class="pr-1 xl:pr-0 xl:pt-1 text-sm font-bold font-bds uppercase xs:text-base xs:text-md xl:text-xl xl:mr-1">{label}</span>
 
       <div class="hidden xl:mr-4 group-hover:scale-105 xl:block">
         {icon === "artists" && <Artist class="w-8 text-pj-blue group-hover:text-pj-blue" />}

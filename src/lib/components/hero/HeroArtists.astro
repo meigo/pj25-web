@@ -55,7 +55,6 @@ otherArtistsData.sort(compareByName); // Sort by name
   init();
 </script>
 
-<!-- <div class="flex flex-wrap justify-center w-full pt-0 mt-32 md:nth-2:pt-8 lg:nth-2:pt-0 lg:nth-3:pt-8 selection:bg-pj-yellow "></div> -->
 <div class="flex flex-col items-center">
   <div class="flex flex-wrap items-center justify-center max-w-[900px] mt-6 lg:mt-12">
     <HeroArtist data={mainArtistsData["bru-c"]} class="w-48 lg:top-2 lg:w-50">
@@ -79,9 +78,7 @@ otherArtistsData.sort(compareByName); // Sort by name
     </HeroArtist>
   </div>
 
-  <div
-    id="local-artists"
-    class="max-w-4xl mt-16 text-xl tracking-wide text-center sm:text-3xl font-bds text-pj-cyan sm:mt-24 selection:text-pj-blue selection:bg-pj-yellow">
+  <div id="local-artists" class="max-w-4xl mt-16 text-2xl tracking-wide text-center sm:text-3xl font-bds text-pj-cyan sm:mt-24">
     {
       otherArtistsData.map((artist, index) => (
         <span>

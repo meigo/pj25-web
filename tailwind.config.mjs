@@ -89,8 +89,6 @@ const config = {
         5: "5",
       },
       fontFamily: {
-        // vodka: "VodkaSans",
-        vag: "VagRounded",
         bds: "BDSupper",
       },
       fontSize: {

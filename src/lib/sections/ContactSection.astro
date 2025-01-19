@@ -33,37 +33,37 @@ const submitLabel = language === "et" ? "Saada sõnum" : "Send message";
   async function submit(e) {
     e.preventDefault();
 
-    // submitButton.disabled = true;
+    submitButton.disabled = true;
 
-    // const formData = new FormData(formElement);
+    const formData = new FormData(formElement);
 
     // H o n e y p o t
-    // if (formData.get("email") !== "") {
-    //   formElement.reset();
-    //   showResponseMessage(false);
-    //   return;
-    // }
+    if (formData.get("email") !== "") {
+      formElement.reset();
+      showResponseMessage(false);
+      return;
+    }
 
-    // if (!formData.get("liame") || !formData.get("message")) {
-    //   return;
-    // }
+    if (!formData.get("liame") || !formData.get("message")) {
+      return;
+    }
 
-    // formData.set("email", formData.get("liame"));
-    // formData.delete("liame");
+    formData.set("email", formData.get("liame"));
+    formData.delete("liame");
 
-    // try {
-    //   const request = await fetch("/contact-form.php", {
-    //     method: "POST",
-    //     body: formData,
-    //   });
-    //   if (request.ok) {
-    //     showResponseMessage(true);
-    //   } else {
-    //     showResponseMessage(false);
-    //   }
-    // } catch (error) {
-    //   showResponseMessage(false);
-    // }
+    try {
+      const request = await fetch("/contact-form.php", {
+        method: "POST",
+        body: formData,
+      });
+      if (request.ok) {
+        showResponseMessage(true);
+      } else {
+        showResponseMessage(false);
+      }
+    } catch (error) {
+      showResponseMessage(false);
+    }
 
     formElement.reset();
   }
@@ -86,7 +86,7 @@ const submitLabel = language === "et" ? "Saada sõnum" : "Send message";
 <ContainerSection id="contact" color="white">
   <!-- TITLE -->
   <div class="text-center">
-    <h2 class="text-pj-blue selection:bg-pj-blue selection:text-white uppercase">{title}</h2>
+    <h2 class="text-pj-blue uppercase">{title}</h2>
   </div>
 
   <!-- FORM -->
@@ -94,7 +94,7 @@ const submitLabel = language === "et" ? "Saada sõnum" : "Send message";
     <div class="w-full max-w-2xl pl-2 lg:pl-0">
       <!-- Real fields -->
       <div>
-        <label for="liame" class="block text-base font-bold leading-6 text-gray-500 uppercase selection:bg-pj-blue selection:text-white">
+        <label for="liame" class="block text-base font-bold leading-6 text-gray-500 uppercase">
           {emailLabel}
         </label>
         <div class="mt-2">
@@ -109,7 +109,7 @@ const submitLabel = language === "et" ? "Saada sõnum" : "Send message";
       </div>
 
       <div class="mt-4">
-        <label for="message" class="block text-base font-bold leading-6 text-gray-500 uppercase selection:bg-pj-blue selection:text-white">
+        <label for="message" class="block text-base font-bold leading-6 text-gray-500 uppercase">
           {messageLabel}
         </label>
         <div class="mt-2">

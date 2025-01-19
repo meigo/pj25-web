@@ -13,7 +13,7 @@ const { data } = Astro.props;
   {
     data.title && (
       <div class="text-center">
-        <h2 class="text-pj-blue selection:bg-pj-blue selection:text-yellow uppercase">{data.title}</h2>
+        <h2 class="text-pj-blue uppercase">{data.title}</h2>
       </div>
     )
   }
@@ -21,8 +21,8 @@ const { data } = Astro.props;
   <!-- TEXT -->
   {
     data.text && (
-      <div class="px-4 mx-auto mt-16 leading-7 columns-1 md:columns-2 gap-x-12 gap-y-16">
-        <div class="text-white info-section-text selection:bg-pj-yellow selection:text-pj-blue" set:html={data.html} />
+      <div class="px-4 mx-auto mt-8 sm:mt-16 leading-7 columns-1 md:columns-2 gap-x-12 gap-y-16">
+        <div class="text-white info-section-text" set:html={data.html} />
       </div>
     )
   }
@@ -34,11 +34,11 @@ const { data } = Astro.props;
   }
 
   :global(.info-section-text p) {
-    @apply text-pj-blue font-sans;
+    @apply text-pj-blue font-sans text-lg md:text-xl;
   }
 
   :global(.info-section-text li) {
-    @apply text-pj-blue font-sans;
+    @apply text-pj-blue font-sans text-lg md:text-xl;
   }
 
   :global(.info-section-text h3) {

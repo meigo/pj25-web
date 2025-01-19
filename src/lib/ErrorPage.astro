@@ -1,6 +1,6 @@
 ---
 import "../app.css";
-import BgSky from "@lib/components/hero/BgSky.astro";
+// import BgSky from "@lib/components/hero/BgSky.astro";
 import GrainOverlay from "@lib/components/GrainOverlay.astro";
 
 interface Props {
@@ -13,16 +13,14 @@ const message = language === "et" ? "Lehte ei leitud." : "The page could not be 
 const buttonLabel = language === "et" ? "Tagasi pealehele" : "Go back to Home";
 ---
 
-<section class="bg-pj-blue fixed w-full h-full">
-  <BgSky />
+<section class="fixed w-full h-full grad">
+  <!-- <BgSky /> -->
 
   <div class="min-h-screen relative flex flex-grow items-center justify-center">
     <div class="text-center">
-      <h1 class="text-8xl text-white selection:bg-pj-yellow selection:text-pj-blue font-bds">404</h1>
-      <p class="text-white text-2xl selection:bg-pj-yellow selection:text-pj-blue">{message}</p>
-      <a
-        href="/"
-        class="mt-4 inline-block rounded bg-pj-yellow px-4 py-2 font-semibold text-pj-blue hover:text-pj-blue-light select-none uppercase">
+      <h1 class="text-8xl text-pj-blue font-bds">404</h1>
+      <p class="text-pj-blue text-2xl">{message}</p>
+      <a href="/" class="mt-4 inline-block rounded bg-pj-pink px-4 py-2 font-semibold text-pj-blue hover:text-white select-none uppercase">
         {buttonLabel}
       </a>
     </div>
@@ -30,3 +28,10 @@ const buttonLabel = language === "et" ? "Tagasi pealehele" : "Go back to Home";
 
   <GrainOverlay />
 </section>
+
+<style lang="postcss" >
+  .grad {
+    /* background: radial-gradient(circle at center 0px, var(--colorStart) 20%, var(--colorEnd) 90%); */
+    background: linear-gradient(to bottom, #92FFA1 20%, #00FFFF 90%);
+  }
+</style>

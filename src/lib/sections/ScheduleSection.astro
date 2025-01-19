@@ -7,12 +7,12 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<ContainerSection id="schedule" color="pj-blue" colorGradient="pj-cyan">
+<ContainerSection id="schedule" color="pj-yellow-light" colorGradient="pj-mint">
   <!-- TITLE -->
   {
     data.title && (
       <div class="text-center">
-        <h2 class="text-pj-cyan selection:bg-pj-blue selection:text-pj-yellow uppercase">{data.title}</h2>
+        <h2 class="text-pj-pink uppercase">{data.title}</h2>
       </div>
     )
   }
@@ -20,10 +20,10 @@ const { data } = Astro.props;
   <!-- TEXTS -->
   {
     data.text && (
-      <div class="flex justify-center mt-20">
+      <div class="flex justify-center mt-8 sm:mt-20">
         <div class="grid grid-cols-1 gap-x-24 gap-y-16 md:grid-cols-2 schedule-section-text">
           {data.text.map((text) => (
-            <div class="md:justify-self-end selection:bg-pj-blue selection:text-pj-yellow" set:html={text} />
+            <div class="md:justify-self-end" set:html={text} />
           ))}
         </div>
       </div>

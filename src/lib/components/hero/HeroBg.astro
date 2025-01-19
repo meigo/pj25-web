@@ -1,6 +1,12 @@
 ---
+import Bird from "./Bird.astro";
 import Fire from "./Fire.astro";
+import Flower from "./Flower.astro";
+import Flower2 from "./Flower2.astro";
+import Flower3 from "./Flower3.astro";
+import Glasses from "./Glasses.astro";
 import Smoke from "./Smoke.astro";
+
 import FireParticles from "@lib/components/particles/FireParticles.astro";
 ---
 
@@ -22,8 +28,6 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
 
       gsap.utils.toArray(".parallax").forEach((layer: HTMLElement) => {
         const depth = parseFloat(layer.dataset.depth);
-        // const movement = -(layer.offsetHeight * depth);
-
         const movement = 200 * depth;
         tl.to(layer, { y: movement, ease: "none" }, 0);
       });
@@ -45,13 +49,13 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
 <style>
   .ground {
     background: rgb(255, 132, 203);
-    background: radial-gradient(circle at center -250px, rgba(255, 123, 172, 1) 10%, rgba(0, 0, 255, 1) 20%, #fbb03b 50%);
+    background: radial-gradient(circle at center -250px, rgba(255, 123, 172, 1) 10%, rgba(0, 0, 255, 1) 20%, #ff80a6 50%);
   }
 </style>
 
-<div id="hero-bg" class="relative">
+<div id="hero-bg" class="absolute w-full h-full overflow-hidden">
   <!-- BG -->
-  <div class="absolute w-full flex justify-center overflow-hidden">
+  <div class="flex justify-center">
     <div class="parallax min-w-[1500px] scale-150" data-depth="2">
       <svg viewBox="0 0 3000 1920">
         <path id="bg" d="M3000 1919.48V-.52L0 .005v1920l3000-.525Z" style="fill:url(#_Radial1)"> </path>
@@ -74,10 +78,10 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
     </div>
   </div>
 
-  <div class="relative -top-28">
+  <div class="absolute w-full top-0 sm:-top-28 flex justify-center">
     <!-- SUN  -->
-    <div class="absolute w-full h-[100%] flex justify-center overflow-hidden">
-      <div class="absolute w-[1500px] -top-10 scale-125 parallax" data-depth="1.1">
+    <div>
+      <div class="w-[1500px] -top-10 scale-125 parallax" data-depth="1.1">
         <svg viewBox="0 0 3000 1920">
           <path
             id="sun"
@@ -101,9 +105,12 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
     </div>
 
     <!-- GROUND -->
-    <div class="absolute w-full flex justify-center overflow-x-hidden">
+    <div class="absolute w-full flex justify-center">
+      <!-- GROUND -->
       <div class="relative top-[600px] w-[2250px] h-[3000px] parallax ground" data-depth="0.7"></div>
-      <div class="absolute top-[650px] w-[800px] opacity-90 parallax" data-depth="0.7">
+
+      <!-- GLOW -->
+      <div class="absolute top-[650px] w-[800px] opacity-90 parallax hidden sm:block" data-depth="0.7">
         <svg viewBox="0 0 588 125">
           <ellipse cx="293.318" cy="61.657" rx="289.516" ry="58.733" style="fill:url(#_Radial50)"> </ellipse>
           <defs>
@@ -122,10 +129,12 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
           </defs>
         </svg>
       </div>
-      <div class="absolute ml-12 sm:ml-0 w-20 top-[630px] parallax" data-depth="0.7">
+      <!-- FIRE -->
+      <div class="absolute ml-12 sm:ml-0 w-20 top-[630px] parallax hidden sm:block" data-depth="0.7">
         <Fire />
       </div>
-      <div class="absolute ml-22 sm:ml-10 w-[800px] top-0 opacity-10 scale-x-100 parallax" data-depth="0.7">
+      <!-- SMOKE -->
+      <div class="absolute ml-22 sm:ml-10 w-[800px] top-0 opacity-10 scale-x-100 parallax hidden sm:block" data-depth="0.7">
         <Smoke />
       </div>
     </div>
@@ -133,8 +142,14 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
     <FireParticles />
 
     <!-- HILLS LEFT -->
-    <div class="absolute w-full flex justify-center 2xl:justify-start overflow-x-hidden">
+    <div class="absolute w-full flex justify-center 2xl:justify-start">
       <div class="absolute w-[1500px]">
+        <!-- BIRD -->
+        <div class="absolute w-32 left-[250px] top-[380px] parallax" data-depth="-0.5"><Bird /></div>
+
+        <!-- FLOWER -->
+        <div class="absolute w-10 left-[280px] top-[770px] parallax" data-depth="0.5"><Flower2 /></div>
+
         <svg viewBox="0 0 3000 2500">
           <path
             id="hill_l_5"
@@ -235,8 +250,17 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
     </div>
 
     <!-- HILLS RIGHT -->
-    <div class="absolute w-full flex justify-center 2xl:justify-end overflow-x-hidden">
+    <div class="absolute w-full flex justify-center 2xl:justify-end">
       <div class="absolute w-[1500px]">
+        <!-- FLOWER -->
+        <div class="absolute w-12 right-[310px] top-[480px] parallax" data-depth="0.5"><Flower /></div>
+
+        <!-- FLOWER -->
+        <div class="absolute w-10 right-[220px] top-[870px] parallax" data-depth="0.8"><Flower3 /></div>
+
+        <!-- GLASSES -->
+        <div class="absolute w-24 right-[320px] top-[370px] parallax" data-depth="0.5"><Glasses /></div>
+
         <svg viewBox="0 0 3000 2500">
           <path
             id="hill_r_5"

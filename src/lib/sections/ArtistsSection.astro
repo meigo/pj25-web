@@ -15,7 +15,7 @@ const { data } = Astro.props;
   {
     data.title && (
       <div class="text-center">
-        <h2 class="text-pj-blue selection:bg-pj-yellow selection:text-pj-violet uppercase">{data.title}</h2>
+        <h2 class="text-pj-blue  uppercase">{data.title}</h2>
       </div>
     )
   }
@@ -23,19 +23,16 @@ const { data } = Astro.props;
   <!-- TEXT -->
   {
     data.text && (
-      <div
-        class="px-4 mx-auto mt-16 leading-7 text-pj-yellow selection:bg-pj-yellow selection:text-pj-violet columns-1 gap-x-12 gap-y-16 artists-section-text"
-        set:html={data.text}
-      />
+      <div class="px-4 mx-auto sm:mt-16 leading-7 text-pj-yellow columns-1 gap-x-12 gap-y-16 artists-section-text" set:html={data.text} />
     )
   }
 
   <!-- ARTISTS -->
   {
     data.artists && (
-      <div class="flex flex-wrap justify-center w-full pt-0 mt-32 md:nth-2:pt-8 lg:nth-2:pt-0 lg:nth-3:pt-8 selection:bg-pj-yellow ">
+      <div class="flex flex-wrap justify-center w-full pt-0 mt-16 sm:mt-32 md:nth-2:pt-8 lg:nth-2:pt-0 lg:nth-3:pt-8 ">
         {data.artists.map((artist) => (
-          <div id={slugify(artist.name)} class="w-full mb-[2vw] mx-0 md:mx-8 md:mb-0 md:max-w-[30vw] lg:max-w-[20vw] xl:max-w-64">
+          <div id={slugify(artist.name)} class="w-full mb-10 mx-0 md:mx-8 md:mb-16 md:max-w-[30vw] lg:max-w-[20vw] xl:max-w-64">
             <ArtistCard data={artist} />
           </div>
         ))}
