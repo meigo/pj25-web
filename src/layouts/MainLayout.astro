@@ -3,7 +3,6 @@ import "../app.css";
 
 import { siteData } from "@lib/store";
 import { ClientRouter, fade, slide } from "astro:transitions";
-// import { getImage } from "astro:assets";
 
 interface Props {
   language?: Language;
@@ -53,29 +52,18 @@ const langBase = `${base}${language === "en" ? "en/" : ""}`;
     requestAnimationFrame(raf);
     // Menu smooth scroll event listeners are here because of lenis instance
     getMenuAnchorLinks().forEach((anchor) => anchor.addEventListener("click", smoothScrollToAnchor));
+  }
+
+  // OUT
+  document.addEventListener("astro:before-swap", () => {
+    getMenuAnchorLinks().forEach((anchor) => anchor.removeEventListener("click", smoothScrollToAnchor));
+    lenis.destroy(); // Prevent lenis to scroll on next page
 
     let triggers = ScrollTrigger.getAll();
     triggers.forEach((trigger) => {
       trigger.kill();
     });
     ScrollTrigger.refresh();
-
-    const backButton: HTMLButtonElement = document.querySelector("[data-back-button]");
-    if (backButton) {
-      backButton.addEventListener("click", () => history.back());
-
-      backButton.addEventListener("keydown", (e: KeyboardEvent) => {
-        if (e.key == "Escape" || e.key == "Enter") history.back();
-      });
-
-      backButton.focus();
-    }
-  }
-
-  // OUT
-  document.addEventListener("astro:before-swap", () => {
-    lenis.destroy(); // Prevent lenis to scroll on next page
-    getMenuAnchorLinks().forEach((anchor) => anchor.removeEventListener("click", smoothScrollToAnchor));
   });
 
   // IN
@@ -138,15 +126,5 @@ const langBase = `${base}${language === "en" ? "en/" : ""}`;
     </script>
 
     <slot />
-
-    <noscript>
-      <div>
-        <style>
-          html {
-            scroll-behavior: smooth;
-          }
-        </style>
-      </div>
-    </noscript>
   </body>
 </html>

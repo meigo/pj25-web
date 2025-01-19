@@ -51,7 +51,7 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
 
 <div id="hero-bg" class="relative">
   <!-- BG -->
-  <div class="absolute w-full flex justify-center">
+  <div class="absolute w-full flex justify-center overflow-hidden">
     <div class="parallax min-w-[1500px] scale-150" data-depth="2">
       <svg viewBox="0 0 3000 1920">
         <path id="bg" d="M3000 1919.48V-.52L0 .005v1920l3000-.525Z" style="fill:url(#_Radial1)"> </path>
@@ -76,7 +76,7 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
 
   <div class="relative -top-28">
     <!-- SUN  -->
-    <div class="absolute w-full h-[100%] flex justify-center">
+    <div class="absolute w-full h-[100%] flex justify-center overflow-hidden">
       <div class="absolute w-[1500px] -top-10 scale-125 parallax" data-depth="1.1">
         <svg viewBox="0 0 3000 1920">
           <path
@@ -101,7 +101,7 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
     </div>
 
     <!-- GROUND -->
-    <div class="absolute w-full flex justify-center">
+    <div class="absolute w-full flex justify-center overflow-x-hidden">
       <div class="relative top-[600px] w-[2250px] h-[3000px] parallax ground" data-depth="0.7"></div>
       <div class="absolute top-[650px] w-[800px] opacity-90 parallax" data-depth="0.7">
         <svg viewBox="0 0 588 125">
@@ -133,7 +133,7 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
     <FireParticles />
 
     <!-- HILLS LEFT -->
-    <div class="absolute w-full flex justify-center 2xl:justify-start">
+    <div class="absolute w-full flex justify-center 2xl:justify-start overflow-x-hidden">
       <div class="absolute w-[1500px]">
         <svg viewBox="0 0 3000 2500">
           <path
@@ -235,7 +235,7 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
     </div>
 
     <!-- HILLS RIGHT -->
-    <div class="absolute w-full flex justify-center 2xl:justify-end">
+    <div class="absolute w-full flex justify-center 2xl:justify-end overflow-x-hidden">
       <div class="absolute w-[1500px]">
         <svg viewBox="0 0 3000 2500">
           <path

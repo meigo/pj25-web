@@ -10,6 +10,31 @@ interface Props {
 const { title = "" } = Astro.props;
 ---
 
+<script>
+  function init() {
+    const backButton: HTMLButtonElement = document.querySelector("[data-back-button]");
+    if (backButton) {
+      backButton.addEventListener("click", () => history.back());
+
+      backButton.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key == "Escape" || e.key == "Enter") history.back();
+      });
+
+      backButton.focus();
+    }
+  }
+
+  // OUT
+  document.addEventListener("astro:before-swap", () => {});
+
+  // IN
+  document.addEventListener("astro:after-swap", () => {
+    init();
+  });
+
+  init();
+</script>
+
 <html lang="et">
   <head>
     <meta charset="utf-8" />
