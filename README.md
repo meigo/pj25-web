@@ -1,1 +1,1 @@
-# Pühajärve 2024 veebileht
+# Pühajärve 2025 veebileht
