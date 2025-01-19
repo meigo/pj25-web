@@ -10,12 +10,12 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<ContainerSection id="artists" color="pj-pink">
+<ContainerSection id="artists" color="pj-mint" colorGradient="pj-cyan">
   <!-- TITLE -->
   {
     data.title && (
       <div class="text-center">
-        <h2 class="text-pj-blue selection:bg-pj-yellow selection:text-pj-violet">{data.title}</h2>
+        <h2 class="text-pj-blue selection:bg-pj-yellow selection:text-pj-violet uppercase">{data.title}</h2>
       </div>
     )
   }

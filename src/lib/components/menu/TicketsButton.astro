@@ -18,15 +18,15 @@ const ariaLabel = language === "et" ? "Osta pilet" : "Buy a ticket";
       <Ticket
         {language}
         class="w-28 transition duration-300 brightness-90 origin-left group-hover:scale-95 -rotate-12 rot group-hover:-rotate-16"
-        textClass="fill-pj-violet group-hover:fill-pj-blue"
+        bgClass="fill-pj-yellow  group-focus:fill-white"
+        textClass="fill-pj-blue group-hover:fill-white"
       />
     </div>
     <div id="ticket-front" class="absolute">
       <Ticket
         {language}
         class="transition duration-300 origin-left w-28 group-hover:scale-110 rotate-2 group-hover:rotate-6"
-        textClass="fill-pj-violet group-hover:fill-pj-blue"
-        bgClass="fill-pj-yellow  group-focus:fill-white"
+        textClass="fill-pj-blue group-hover:fill-white"
       />
     </div>
   </div>

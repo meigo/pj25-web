@@ -1,10 +1,32 @@
+---
+import Coolbet from "./Coolbet.astro";
+
+interface Props {
+  language: Language;
+}
+
+const { language = "et" } = Astro.props;
+
+const presentsText = language === "et" ? "ESITLEB" : "PRESENTS";
+const dateText = language === "et" ? "22-23 JUUNI 2025" : "22-23 JUNE 2025";
+---
+
 <!-- <style>
   #pj-logo {
     opacity: 0;
     animation: slide-fade-up 0.25s ease-out forwards;
   }
 </style> -->
-<div class="relative mt-10 pl-14 pr-4 xl:pl-0 w-full flex justify-center">
+<div class="mt-4"></div>
+
+<div class="relative pl-14 pr-4 xl:pl-0 w-full flex justify-center items-center">
+  <div class="w-full max-w-[150px] min-w-24">
+    <Coolbet />
+  </div>
+  <div class="pl-2 font-bold font-sans text-base xs:text-xl text-pj-blue">{presentsText}</div>
+</div>
+
+<div class="relative pl-14 pr-4 xl:pl-0 w-full flex justify-center">
   <div id="pj-logo" class="w-full sm:w-[80%] xl:w-[800px]">
     <svg style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2" viewBox="0 0 1011 174">
       <g id="P">
@@ -131,6 +153,6 @@
 <div class="relative mt-2 pl-14 pr-4 xl:pl-0 w-full flex justify-center">
   <div class="w-full sm:w-[80%] xl:w-[800px] flex flex-col sm:flex-row items-center sm:justify-between">
     <div class="font-bds text-xl md:text-2xl text-pj-blue font-bold">JAANITULI 2025</div>
-    <div class="font-bds text-xl md:text-2xl text-pj-blue font-bold">18. AASTA SÜNNIPÄEV</div>
+    <div class="font-bds text-xl md:text-2xl text-pj-blue font-bold">{dateText}</div>
   </div>
 </div>

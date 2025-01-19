@@ -18,10 +18,10 @@ const { language, data } = Astro.props;
 <nav class="z-20">
   <div class="fixed top-0 left-0">
     <div class="flex flex-col p-1 xl:flex-row">
-      <AButton href="#" ariaLabel="Instagram" class="m-1">
+      <AButton href="https://www.facebook.com/jaanituli" ariaLabel="Instagram" class="m-1">
         <FB class="text-white w-7 group-hover/slot:text-pj-violet" />
       </AButton>
-      <AButton href="#" ariaLabel="Facebook" class="m-1">
+      <AButton href="https://www.instagram.com/jaanituli" ariaLabel="Facebook" class="m-1">
         <Instagram class="text-white w-7 group-hover/slot:text-pj-violet" />
       </AButton>
       {
@@ -42,7 +42,7 @@ const { language, data } = Astro.props;
     data.tickets && (
       <div class="fixed top-8 right-4">
         <div class="hidden ml-9 mb-7 xl:block">
-          <TicketsButton href="#" {language} />
+          <TicketsButton href={data.tickets.url} {language} />
         </div>
       </div>
     )
@@ -53,7 +53,7 @@ const { language, data } = Astro.props;
       {
         data.tickets && (
           <span class="xl:hidden">
-            <MenuButton href="#" label={data.tickets.title} icon={"ticket"} class="bg-yellow-400" reload />
+            <MenuButton href={data.tickets.url} label={data.tickets.title} icon={"ticket"} class="bg-yellow-400" reload />
           </span>
         )
       }

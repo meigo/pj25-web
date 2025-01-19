@@ -1,6 +1,6 @@
 ---
 import "../../app.css";
-import Layout from "../../layouts/MainLayout.astro";
+import Layout from "../../layouts/MediaLayout.astro";
 import { getArtistsSectionData } from "@lib/cms";
 import YtPlayer from "@lib/components/YtPlayer.astro";
 import MediaMenu from "@lib/components/menu/MediaMenu.astro";
@@ -18,7 +18,7 @@ const { id } = Astro.params;
 const { title } = Astro.props;
 ---
 
-<Layout {title} noindex nofollow>
+<Layout {title}>
   <div class="fixed inset-0 z-10 flex items-center justify-center">
     <div class="w-full px-2 max-w-7xl">
       <YtPlayer {id} />

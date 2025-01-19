@@ -7,14 +7,13 @@ import skyplus from "@assets/sponsor_skyplus.png";
 import move from "@assets/sponsor_move.png";
 import otepaa from "@assets/sponsor_otepaa.png";
 import saku from "@assets/sponsor_saku.png";
-import visit from "@assets/sponsor_visit.png";
 ---
 
 <section id="footer" class="relative">
-  <div class="bg-pj-cyan">
+  <div class="bg-pj-mint">
     <div class="max-w-6xl pl-16 pr-4 sm:px-14 py-8 flex flex-wrap justify-center items-center sm:mx-auto">
       <a href="https://monstermusic.ee/" aria-label="Monster Music logo" data-astro-reload>
-        <MonsterMusic class="h-16 fill-pj-blue hover:fill-pj-violet" />
+        <MonsterMusic class="h-16 fill-pj-blue hover:fill-[#006DFF]" />
       </a>
 
       <a href="https://sky.ee/skyplus" class="link-hover" data-astro-reload>
@@ -29,9 +28,6 @@ import visit from "@assets/sponsor_visit.png";
       <a href="https://saku.ee/" class="link-hover" data-astro-reload>
         <Image src={saku} alt="Saku logo" class="m-4 w-auto h-6" />
       </a>
-      <a href="https://www.visitestonia.com/" class="link-hover" data-astro-reload>
-        <Image src={visit} alt="Visit Estonia logo" class="m-4 w-auto h-6" />
-      </a>
     </div>
   </div>
 
@@ -40,6 +36,6 @@ import visit from "@assets/sponsor_visit.png";
 
 <style>
   .link-hover:hover {
-    filter: hue-rotate(-55deg) brightness(2.5) saturate(2);
+    filter: hue-rotate(-55deg) brightness(1.5) saturate(2);
   }
 </style>

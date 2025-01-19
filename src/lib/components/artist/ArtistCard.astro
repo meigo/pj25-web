@@ -13,11 +13,8 @@ let rotationClass = randomRotationClass(data.name, -5, 5);
 const isVideo = !!data.video_id;
 ---
 
-<!-- <div
-  class=`mx-auto relative aspect-[5/6] w-4/5 md:w-full overflow-hidden rounded-xl sm:rounded-full mb-16 focus-within:border-4 border-white
-  ${rotationClass} ${!isVideo && 'pointer-events-none'}`> -->
 <div
-  class=`mx-auto relative aspect-[5/6] w-4/5 md:w-full overflow-hidden rounded-xl sm:rounded-5xl mb-16 border-6 border-pj-blue focus-within:border-white
+  class=`mx-auto relative aspect-[5/6] w-4/5 md:w-full overflow-hidden rounded-5xl mb-16 border-4 border-b-12 border-pj-blue focus-within:border-white
   ${rotationClass} ${!isVideo && 'pointer-events-none'}`>
   {
     isVideo ? (

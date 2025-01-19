@@ -7,12 +7,12 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<ContainerSection id="schedule" color="pj-yellow">
+<ContainerSection id="schedule" color="pj-blue" colorGradient="pj-cyan">
   <!-- TITLE -->
   {
     data.title && (
       <div class="text-center">
-        <h2 class="text-pj-violet selection:bg-pj-blue selection:text-pj-yellow">{data.title}</h2>
+        <h2 class="text-pj-cyan selection:bg-pj-blue selection:text-pj-yellow uppercase">{data.title}</h2>
       </div>
     )
   }
@@ -37,19 +37,19 @@ const { data } = Astro.props;
   }
 
   :global(.schedule-section-text p) {
-    @apply text-pj-violet;
+    @apply text-pj-blue;
   }
 
   :global(.schedule-section-text li) {
-    @apply text-pj-violet;
+    @apply text-pj-blue;
   }
 
   :global(.schedule-section-text h3) {
-    @apply text-red-400 pt-4;
+    @apply text-pj-blue pt-4;
   }
 
   :global(.schedule-section-text h4) {
-    @apply text-pj-violet pt-4;
+    @apply text-pj-pink pt-4;
   }
 
   :global(.schedule-section-text h5) {

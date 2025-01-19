@@ -1,6 +1,6 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
-const colors = require("tailwindcss/colors");
+// const colors = require("tailwindcss/colors");
 
 /** @type {import('tailwindcss').Config}*/
 const config = {
@@ -22,6 +22,7 @@ const config = {
     "fill-pj-blue",
     "fill-pj-yellow",
     "fill-pj-cyan",
+    "fill-pj-mint",
     "fill-white",
     "fill-black",
     "bg-pj-pink",
@@ -29,6 +30,7 @@ const config = {
     "bg-pj-blue",
     "bg-pj-yellow",
     "bg-pj-cyan",
+    "bg-pj-mint",
     "bg-white",
     "bg-black",
     "ring-white",
@@ -49,6 +51,8 @@ const config = {
         5: "5px",
         6: "6px",
         8: "8px",
+        10: "10px",
+        12: "12px",
       },
       lineHeight: {
         1: ".25rem",
@@ -86,7 +90,7 @@ const config = {
       },
       fontFamily: {
         // vodka: "VodkaSans",
-        // vag: "VagRounded",
+        vag: "VagRounded",
         bds: "BDSupper",
       },
       fontSize: {
@@ -112,10 +116,12 @@ const config = {
         "pj-pink": "#FF80A6",
         "pj-violet": "#9046D0",
         "pj-violet-light": "#553E79",
-        "pj-yellow": "#FBAA48",
+        "pj-yellow": "#FBB03B",
+        "pj-yellow-light": "#FDDA54",
         "pj-blue": "#0000FF",
         "pj-blue-light": "#1F9FF5",
-        "pj-cyan": "#92FFA1",
+        "pj-mint": "#92FFA1",
+        "pj-cyan": "#00FFFF",
       },
     },
   },

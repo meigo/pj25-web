@@ -24,11 +24,43 @@ const langBase = `${base}${language === "en" ? "en/" : ""}`;
 ---
 
 <script>
-  document.addEventListener("astro:after-swap", () => {
-    document.documentElement.classList.add("smooth-scroll");
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import Lenis from "lenis";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  //***************************************************/
+
+  let lenis;
+
+  function raf(time: number) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  function smoothScrollToAnchor(event: Event) {
+    const anchorElement = (event.target as HTMLAnchorElement).closest("a");
+    lenis.scrollTo(anchorElement.getAttribute("href"));
+  }
+
+  function getMenuAnchorLinks() {
+    return document.querySelectorAll<HTMLAnchorElement>("a.menu-item.menu-anchor");
+  }
+
+  function init() {
+    lenis = new Lenis();
+    requestAnimationFrame(raf);
+    // Menu smooth scroll event listeners are here because of lenis instance
+    getMenuAnchorLinks().forEach((anchor) => anchor.addEventListener("click", smoothScrollToAnchor));
+
+    let triggers = ScrollTrigger.getAll();
+    triggers.forEach((trigger) => {
+      trigger.kill();
+    });
+    ScrollTrigger.refresh();
 
     const backButton: HTMLButtonElement = document.querySelector("[data-back-button]");
-
     if (backButton) {
       backButton.addEventListener("click", () => history.back());
 
@@ -38,7 +70,20 @@ const langBase = `${base}${language === "en" ? "en/" : ""}`;
 
       backButton.focus();
     }
+  }
+
+  // OUT
+  document.addEventListener("astro:before-swap", () => {
+    lenis.destroy(); // Prevent lenis to scroll on next page
+    getMenuAnchorLinks().forEach((anchor) => anchor.removeEventListener("click", smoothScrollToAnchor));
   });
+
+  // IN
+  document.addEventListener("astro:after-swap", () => {
+    init();
+  });
+
+  init();
 </script>
 
 <html lang={language} transition:animate={fade({ duration: "0.3s" })}>
@@ -78,12 +123,20 @@ const langBase = `${base}${language === "en" ? "en/" : ""}`;
       )
     }
 
+    <link rel="stylesheet" href="/lenis.css" />
+
     <!-- DISABLE FALLBACK, CONFLICTS WITH LENIS -->
     <ClientRouter fallback="none" />
   </head>
 
   <!-- SMOOTH SCROLL ONLY FOR ANCHOR NAVIGATION -->
-  <body onload="document.documentElement.classList.add('smooth-scroll');" class="overflow-x-hidden">
+  <!-- <body onload="document.documentElement.classList.add('smooth-scroll');" class="overflow-x-hidden"> -->
+  <body class="overflow-x-hidden">
+    <!-- FIREFOX! -->
+    <script is:inline>
+      true;
+    </script>
+
     <slot />
 
     <noscript>

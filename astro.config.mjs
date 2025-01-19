@@ -7,4 +7,7 @@ export default defineConfig({
   // base: "/",
   trailingSlash: "never",
   integrations: [tailwind()],
+  devToolbar: {
+    enabled: false,
+  },
 });

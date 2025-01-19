@@ -24,38 +24,10 @@ const infoSectionData = await getInfoSectionData(language);
 const imageSectionsData = await getBackgroundsData();
 ---
 
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import Lenis from "lenis";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  //***************************************************/
-  // SMOOTH SCROLL
-  const lenis = new Lenis();
-
-  function raf(time: number) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-
-  //***************************************************/
-
-  document.addEventListener("astro:after-swap", () => {
-    let triggers = ScrollTrigger.getAll();
-    triggers.forEach((trigger) => {
-      trigger.kill();
-    });
-    ScrollTrigger.refresh();
-  });
-</script>
-
 <Layout {language} title={siteData.title} og schema>
   <h1 class="absolute text-xs text-pj-blue -top-10">{siteData.title}</h1>
 
-  <HeroSection artistsData={artistsSectionData.artists} />
+  <HeroSection {language} artistsData={artistsSectionData.artists} />
 
   <ArtistsSection data={artistsSectionData} />
 

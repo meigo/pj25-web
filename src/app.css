@@ -20,9 +20,24 @@
     src: url("/bdsupper-bold.woff2") format("woff2");
   }
 
-  .smooth-scroll {
-    scroll-behavior: smooth;
+  @font-face {
+    font-family: "VagRounded";
+    font-display: swap;
+    src: url("/vag-rounded-light.woff") format("woff");
+    src: url("/vag-rounded-light.woff2") format("woff2");
+    font-weight: normal;
   }
+  @font-face {
+    font-family: "VagRounded";
+    font-display: swap;
+    src: url("/vag-rounded-bold.woff") format("woff");
+    src: url("/vag-rounded-bold.woff2") format("woff2");
+    font-weight: bold;
+  }
+
+  /* .smooth-scroll {
+    scroll-behavior: smooth;
+  } */
 
   html,
   body {

@@ -6,10 +6,11 @@ import PjLogo from "@lib/components/hero/PjLogo.astro";
 import FireParticles from "@lib/components/particles/FireParticles.astro";
 
 interface Props {
+  language: Language;
   artistsData?: ArtistData[];
 }
 
-const { artistsData } = Astro.props;
+const { language = "et", artistsData } = Astro.props;
 
 const ariaLabel = "Pühajärve jaanituli 2024";
 ---
@@ -17,7 +18,7 @@ const ariaLabel = "Pühajärve jaanituli 2024";
 <section class="bg-pj-blue relative">
   <HeroBg />
 
-  <PjLogo />
+  <PjLogo {language} />
 
   <!-- <FireParticles /> -->
 

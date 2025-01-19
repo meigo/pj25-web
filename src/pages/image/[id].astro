@@ -2,7 +2,7 @@
 import "../../app.css";
 import { getImagePagePictureData } from "@lib/cms-images";
 import { infoImages } from "@lib/store";
-import Layout from "../../layouts/MainLayout.astro";
+import Layout from "../../layouts/MediaLayout.astro";
 import MediaMenu from "@lib/components/menu/MediaMenu.astro";
 import Picture from "@lib/components/Picture.astro";
 
@@ -22,7 +22,7 @@ const data = await getImagePagePictureData(id);
 const { title } = Astro.props;
 ---
 
-<Layout {title} noindex nofollow>
+<Layout {title}>
   {
     data && (
       <div class="fixed inset-0 z-10">
