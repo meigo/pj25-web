@@ -1,1 +1,1 @@
-# Pühajärve 2025 veebileht
+# Pühajärve jaanituli 2025 veebileht
