@@ -95,7 +95,7 @@ async function getInfoSectionPictureMarkup(data) {
     { type: "jpeg", srcset: await getImageSource(data._id, sizes, "jpeg") },
   ];
 
-  let s = `<div class="overflow-hidden rounded-xl focus-within:border-4 border-white mt-6">`;
+  let s = `<div class="overflow-hidden rounded-4xl border-4 border-pj-blue focus-within:border-white mt-6">`;
   s += `<a href="/image/${data._id}"><picture>`;
   sources.forEach((source) => {
     s += `<source srcset="${source.srcset}" type="image/${source.type}" sizes="${sizesAttr}" >`;
