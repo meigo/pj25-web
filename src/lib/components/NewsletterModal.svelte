@@ -7,7 +7,7 @@
   let { language = "et" } = $props();
 
   const newsletterButtonLabel = language === "en" ? "Newsletter" : "Uudiskiri";
-  const submitButtonLabel = language === "en" ? "Sign up" : "Telli";
+  const submitButtonLabel = language === "en" ? "Sign up" : "Liitu";
   const placeholderText = language === "en" ? "Your e-mail" : "Sinu e-mail";
   const successMessage =
     language === "en" ? "You have successfully subscribed to our newsletter!" : "Täname, oled liitunud meie uudiskirjaga!";
