@@ -20,7 +20,7 @@ const { data } = Astro.props;
   <!-- TEXTS -->
   {
     data.text && (
-      <div class="flex justify-center mt-8 sm:mt-20">
+      <div class="flex justify-center pl-3 sm:pl-0 mt-8 sm:mt-20">
         <div class="grid grid-cols-1 gap-x-24 gap-y-16 md:grid-cols-2 schedule-section-text">
           {data.text.map((text) => (
             <div class="md:justify-self-end" set:html={text} />

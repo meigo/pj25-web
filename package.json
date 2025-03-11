@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/svelte": "^7.0.5",
     "@astrojs/tailwind": "^5.1.4",
     "astro": "^5.1.7",
     "astro-particles": "^2.10.0",
@@ -28,9 +29,10 @@
     "node-html-parser": "^7.0.1",
     "rellax": "^1.12.1",
     "schema-dts": "^1.1.2",
+    "svelte": "^5.22.6",
     "tailwindcss": "^3.4.17",
     "tsparticles-slim": "^2.12.0",
-    "typescript": "^5.4.2"
+    "typescript": "^5.8.2"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.10"
