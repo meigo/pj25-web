@@ -5,14 +5,15 @@ interface Props {
   language: Language;
   href: string;
   delay?: number | string;
+  tabIndex?: string;
 }
 
-const { language, href, delay = 0 } = Astro.props;
+const { language, href, delay = 0, tabIndex = "0" } = Astro.props;
 
 const ariaLabel = language === "et" ? "Osta pilet" : "Buy a ticket";
 ---
 
-<a {href} class="outline-none group pointer-events-auto" aria-label={ariaLabel} data-astro-reload>
+<a {href} class="outline-none group pointer-events-auto" aria-label={ariaLabel} tabindex={tabIndex} data-astro-reload>
   <div class="flex items-center h-16 w-28" style=`animation-delay:${delay}ms;`>
     <div id="ticket-back" class="absolute">
       <Ticket

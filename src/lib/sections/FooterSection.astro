@@ -12,21 +12,21 @@ import saku from "@assets/sponsor_saku.png";
 <section id="footer" class="relative">
   <div class="bg-pj-mint">
     <div class="max-w-6xl pl-16 pr-4 sm:px-14 py-8 flex flex-wrap justify-center items-center sm:mx-auto">
-      <a href="https://monstermusic.ee/" aria-label="Monster Music logo" data-astro-reload>
-        <MonsterMusic class="h-16 fill-pj-blue hover:fill-[#006DFF]" />
+      <a href="https://monstermusic.ee/" class="outline-none group" aria-label="Monster Music logo" data-astro-reload>
+        <MonsterMusic class="h-16 fill-pj-blue hover:fill-[#006DFF] group-focus:fill-pj-blue-light" />
       </a>
 
-      <a href="https://sky.ee/skyplus" class="link-hover" data-astro-reload>
-        <Image src={skyplus} alt="Sky+ logo" class="m-4 w-auto h-6" />
+      <a href="https://sky.ee/skyplus" class="link-hover group" data-astro-reload>
+        <Image src={skyplus} alt="Sky+ logo" class="logo-image" />
       </a>
-      <a href="https://movemedia.ee/" class="link-hover" data-astro-reload>
-        <Image src={move} alt="Move Media logo" class="m-4 w-auto h-6" />
+      <a href="https://movemedia.ee/" class="link-hover group" data-astro-reload>
+        <Image src={move} alt="Move Media logo" class="logo-image" />
       </a>
-      <a href="https://www.otepaa.ee/" class="link-hover" data-astro-reload>
-        <Image src={otepaa} alt="Otepää logo" class="m-4 w-auto h-6" />
+      <a href="https://www.otepaa.ee/" class="link-hover group" data-astro-reload>
+        <Image src={otepaa} alt="Otepää logo" class="logo-image" />
       </a>
-      <a href="https://saku.ee/" class="link-hover" data-astro-reload>
-        <Image src={saku} alt="Saku logo" class="m-4 w-auto h-6" />
+      <a href="https://saku.ee/" class="link-hover group" data-astro-reload>
+        <Image src={saku} alt="Saku logo" class="logo-image" />
       </a>
     </div>
   </div>
@@ -35,7 +35,16 @@ import saku from "@assets/sponsor_saku.png";
 </section>
 
 <style>
+  .link-hover {
+    @apply outline-none;
+  }
+  .logo-image {
+    @apply m-4 w-auto h-6;
+  }
   .link-hover:hover {
     filter: hue-rotate(-55deg) brightness(1.5) saturate(2);
+  }
+  .link-hover:focus {
+    filter: hue-rotate(-55deg) brightness(2) saturate(2);
   }
 </style>

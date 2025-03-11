@@ -12,15 +12,22 @@ interface Props {
   delay?: number | string;
   class?: string;
   reload?: boolean;
+  tabIndex?: string;
 }
 
-const { href, label, icon, delay = 0, class: className = "bg-pj-mint", reload } = Astro.props;
+const { href, label, icon, delay = 0, class: className = "bg-pj-mint", reload, tabIndex = "0" } = Astro.props;
 
 const isReload = reload ? { "data-astro-reload": "" } : {};
 const isAnchor = href.substring(0, 1) === "#";
 ---
 
-<a {href} class="outline-none group menu-item" class:list={[{ "menu-anchor": isAnchor }]} aria-label={label} {...isReload}>
+<a
+  {href}
+  class="outline-none group menu-item"
+  class:list={[{ "menu-anchor": isAnchor }]}
+  aria-label={label}
+  tabindex={tabIndex}
+  {...isReload}>
   <div
     class=`mt-1 xl:mt-2 pointer-events-auto w-14 xs:w-16 xl:h-16 border-[3.5px] xl:border-4 border-pj-blue rounded-r-3xl xl:rounded-r-full xl:w-40 xl:w-44 group-focus:bg-white ${className}`
     style=`animation-delay:${delay}ms;`>

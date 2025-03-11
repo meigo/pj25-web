@@ -4,7 +4,7 @@
   import Modal from "./Modal.svelte";
   import NL from "@lib/svg/Newsletter.svelte";
 
-  let { language = "et" } = $props();
+  let { language = "et", tabIndex = "0" } = $props();
 
   const newsletterButtonLabel = language === "en" ? "Newsletter" : "Uudiskiri";
   const submitButtonLabel = language === "en" ? "Sign up" : "Liitu";
@@ -87,12 +87,12 @@
   }
 </script>
 
-<button onclick={() => (showModal = true)} class="fade-in">
-  <div
-    class="flex justify-center items-center text-pj-blue min-h-8 min-w-8 w-full px-2 py-2 xl:px-3 xl:py-1 rounded-full bg-pj-mint hover:bg-pj-cyan group">
-    <NL class="w-5 fill-pj-blue group-hover:fill-pj-violet" />
-    <span class="ml-1 font-sans text-sm font-medium uppercase hidden xl:block group-hover:text-pj-violet">{newsletterButtonLabel}</span>
-  </div>
+<button
+  onclick={() => (showModal = true)}
+  class="outline-none flex justify-center items-center text-pj-blue min-h-8 min-w-8 w-full px-2 py-2 xl:px-3 xl:py-1 rounded-full bg-pj-mint hover:bg-pj-cyan focus:bg-white group fade-in"
+  tabindex={tabIndex}>
+  <NL class="w-5 fill-pj-blue group-hover:fill-pj-violet" />
+  <span class="ml-1 font-sans text-sm font-medium uppercase hidden xl:block group-hover:text-pj-violet">{newsletterButtonLabel}</span>
 </button>
 
 <Modal bind:showModal>
