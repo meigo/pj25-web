@@ -55,10 +55,8 @@
     try {
       const result = await subscribeToNewsletter(email);
       message = successMessage;
-      // console.log("Subscription response:", result.data);
       submitSuccess = true;
     } catch (error) {
-      // message = `Error: ${error.message}`;
       message = errorMessage;
       // console.error("Subscription error:", error);
     }
@@ -87,16 +85,19 @@
   }
 </script>
 
+<!-- MODAL OPEN BUTTON -->
 <button
   onclick={() => (showModal = true)}
-  class="outline-none flex justify-center items-center text-pj-blue min-h-8 min-w-8 w-full px-2 py-2 xl:px-3 xl:py-1 rounded-full bg-pj-mint hover:bg-pj-cyan focus:bg-white group fade-in"
+  class="outline-none flex justify-center items-center text-pj-blue min-h-8 min-w-8 w-full px-2 py-2 xl:px-3 xl:py-1 rounded-full
+   bg-pj-mint hover:bg-pj-cyan focus:bg-white origin-center hover:scale-105 group fade-in"
   tabindex={tabIndex}>
-  <NL class="w-5 fill-pj-blue group-hover:fill-pj-violet" />
+  <NL class="w-5 fill-pj-blue group-hover:fill-pj-violet " />
   <span class="ml-1 font-sans text-sm font-medium uppercase hidden xl:block group-hover:text-pj-violet">{newsletterButtonLabel}</span>
 </button>
 
+<!-- MODAL -->
 <Modal bind:showModal>
-  <div class="bg-pj-mint px-10 py-6">
+  <div class="bg-pj-mint px-10 pb-6 pt-10">
     {#if submitSuccess}
       <div in:scale={{ start: 0.5, duration: 500 }} class="my-8">
         <h2 class="text-center text-2xl font-semibold text-pj-blue sm:text-3xl">{successMessage}</h2>
