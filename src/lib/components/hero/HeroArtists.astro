@@ -4,6 +4,10 @@ import BruC from "@lib/svg/BruC.astro";
 import Delta from "@lib/svg/Delta.astro";
 import Brennan from "@lib/svg/Brennan.astro";
 import Nublu from "@lib/svg/Nublu.astro";
+import Metrik from "@lib/svg/Metrik.astro";
+import Songer from "@lib/svg/Songer.astro";
+import Fox from "@lib/svg/Fox.astro";
+import Dada from "@lib/svg/Dada.astro";
 import ViisMiinust from "@lib/svg/ViisMiinust.astro";
 import Bedwetters from "@lib/svg/Bedwetters.astro";
 import HeroArtist from "./HeroArtist.astro";
@@ -14,11 +18,25 @@ interface Props {
 
 const { artistsData } = Astro.props;
 
-let mainArtistsList = ["tommy-cash", "bru-c", "brennan-heart", "delta-heavy", "nublu", "5miinust", "bedwetters"];
+let mainArtistsList = [
+  "tommy-cash",
+  "bru-c",
+  "brennan-heart",
+  "delta-heavy",
+  "nublu",
+  "5miinust",
+  "bedwetters",
+  "metrik",
+  "songer",
+  "fox-stevenson",
+  "dada-jones",
+];
 
 let mainArtistsData: Record<string, { title: string; slug: string; picture: PictureData }>;
 
 let otherArtistsData: ArtistData[];
+
+let delay = 0;
 
 function compareByName(a: ArtistData, b: ArtistData) {
   return a.name.localeCompare(b.name);
@@ -66,15 +84,29 @@ otherArtistsData.sort(compareByName); // Sort by name
     <HeroArtist data={mainArtistsData["brennan-heart"]} class="w-48 lg:top-3 lg:w-52" delay="200">
       <Brennan class="w-full" />
     </HeroArtist>
-    <HeroArtist data={mainArtistsData["5miinust"]} class="w-48 lg:-top-2 lg:w-[150px]" delay="400">
+
+    <HeroArtist data={mainArtistsData["5miinust"]} class="w-48 lg:-top-2 lg:w-[150px]" delay="300">
       <ViisMiinust class="w-full" />
     </HeroArtist>
-    <HeroArtist data={mainArtistsData["delta-heavy"]} class="w-48 lg:top-2 lg:w-40" delay="600"><Delta class="w-full" /> </HeroArtist>
-    <HeroArtist data={mainArtistsData["nublu"]} class="w-48 lg:top-2 lg:w-40" delay="800">
+    <HeroArtist data={mainArtistsData["delta-heavy"]} class="w-48 lg:top-2 lg:w-40" delay="400"><Delta class="w-full" /> </HeroArtist>
+    <HeroArtist data={mainArtistsData["nublu"]} class="w-48 lg:top-2 lg:w-40" delay="500">
       <Nublu class="w-full" />
     </HeroArtist>
-    <HeroArtist data={mainArtistsData["bedwetters"]} class="w-48 lg:-top-1 lg:w-[150px]" delay="1000"
-      ><Bedwetters class="w-full" />
+    <HeroArtist data={mainArtistsData["bedwetters"]} class="w-48 lg:-top-1 lg:w-[150px]" delay="600">
+      <Bedwetters class="w-full" />
+    </HeroArtist>
+
+    <HeroArtist data={mainArtistsData["metrik"]} class="w-48 lg:-top-2 lg:w-[130px]" delay="700">
+      <Metrik class="w-full" />
+    </HeroArtist>
+    <HeroArtist data={mainArtistsData["songer"]} class="w-48 lg:top-6 lg:w-[140px]" delay="800">
+      <Songer class="w-full" />
+    </HeroArtist>
+    <HeroArtist data={mainArtistsData["fox-stevenson"]} class="w-48 lg:top-4 lg:w-[140px]" delay="900">
+      <Fox class="w-full" />
+    </HeroArtist>
+    <HeroArtist data={mainArtistsData["dada-jones"]} class="w-48 lg:-top-1 lg:w-[120px]" delay="1000">
+      <Dada class="w-full" />
     </HeroArtist>
   </div>
 
