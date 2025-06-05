@@ -33,7 +33,7 @@ const imageSectionsData = await getBackgroundsData();
 
   {imageSectionsData.section1.length && <ImageSection data={imageSectionsData.section1} />}
 
-  <ScheduleSection data={scheduleSectionData} />
+  <ScheduleSection data={scheduleSectionData} {language} />
 
   {imageSectionsData.section2.length && <ImageSection data={imageSectionsData.section2} />}
 

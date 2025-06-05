@@ -3,8 +3,12 @@ import ContainerSection from "@components/ContainerSection.astro";
 
 interface Props {
   data?: ScheduleSectionData;
+  language: Language;
 }
-const { data } = Astro.props;
+
+
+
+const { data, language="et" } = Astro.props;
 ---
 
 <ContainerSection id="schedule" color="pj-yellow-light" colorGradient="pj-mint">
@@ -26,6 +30,10 @@ const { data } = Astro.props;
             <div class="md:justify-self-end" set:html={text} />
           ))}
         </div>
+      </div>
+
+      <div class="mt-8 text-center schedule-section-text">
+        { language === "et" ? <p>* Korraldajal on ōigus teha programmis muudatusi!</p> : <p>* The organizer has the right to make changes to the program!</p> }
       </div>
     )
   }
