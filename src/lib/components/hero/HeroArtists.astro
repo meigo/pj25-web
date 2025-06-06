@@ -1,6 +1,6 @@
 ---
 import Tommy from "@lib/svg/Tommy.astro";
-// import BruC from "@lib/svg/BruC.astro";
+import Wilkinson from "@lib/svg/Wilkinson.astro";
 import Delta from "@lib/svg/Delta.astro";
 import Brennan from "@lib/svg/Brennan.astro";
 import Nublu from "@lib/svg/Nublu.astro";
@@ -20,7 +20,7 @@ const { artistsData } = Astro.props;
 
 let mainArtistsList = [
   "tommy-cash",
-  // "bru-c",
+  "wilkinson",
   "brennan-heart",
   "delta-heavy",
   "nublu",
@@ -75,9 +75,9 @@ otherArtistsData.sort(compareByName); // Sort by name
 
 <div class="flex flex-col items-center">
   <div class="flex flex-wrap items-center justify-center max-w-[900px] mt-6 lg:mt-12">
-    <!-- <HeroArtist data={mainArtistsData["bru-c"]} class="w-48 lg:top-2 lg:w-50">
-      <BruC class="w-full" />
-    </HeroArtist> -->
+    <HeroArtist data={mainArtistsData["wilkinson"]} class="w-48 lg:top-2 lg:w-50">
+      <Wilkinson class="w-full" />
+    </HeroArtist>
     <HeroArtist data={mainArtistsData["tommy-cash"]} class="w-48 lg:-top-2 lg:w-56" delay="100">
       <Tommy class="w-full" />
     </HeroArtist>
