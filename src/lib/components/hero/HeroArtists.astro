@@ -1,16 +1,12 @@
 ---
-import Tommy from "@lib/svg/Tommy.astro";
-import Wilkinson from "@lib/svg/Wilkinson.astro";
-import Delta from "@lib/svg/Delta.astro";
-import Brennan from "@lib/svg/Brennan.astro";
+import Terminaator from "@lib/svg/Terminaator.astro";
 import Nublu from "@lib/svg/Nublu.astro";
-import Metrik from "@lib/svg/Metrik.astro";
-import Songer from "@lib/svg/Songer.astro";
-import Fox from "@lib/svg/Fox.astro";
-import Dada from "@lib/svg/Dada.astro";
-import ViisMiinust from "@lib/svg/ViisMiinust.astro";
-import Bedwetters from "@lib/svg/Bedwetters.astro";
+import RanD from "@lib/svg/RanD.astro";
+import Smilers from "@lib/svg/Smilers.astro";
+import Dimension from "@lib/svg/Dimension.astro";
+import BassJackers from "@lib/svg/BassJackers.astro";
 import HeroArtist from "./HeroArtist.astro";
+import Rudim3Ntal from "@lib/svg/Rudim3ntal.astro";
 
 interface Props {
   artistsData: ArtistData[];
@@ -18,19 +14,7 @@ interface Props {
 
 const { artistsData } = Astro.props;
 
-let mainArtistsList = [
-  "tommy-cash",
-  "wilkinson",
-  "brennan-heart",
-  "delta-heavy",
-  "nublu",
-  "5miinust",
-  "bedwetters",
-  "metrik",
-  "songer",
-  "fox-stevenson",
-  "dada-jones",
-];
+let mainArtistsList = ["dimension", "rudim3ntal", "bassjackers", "ran-d", "nublu", "terminaator", "smilers"];
 
 let mainArtistsData: Record<string, { title: string; slug: string; picture: PictureData }>;
 
@@ -75,38 +59,32 @@ otherArtistsData.sort(compareByName); // Sort by name
 
 <div class="flex flex-col items-center">
   <div class="flex flex-wrap items-center justify-center max-w-[900px] mt-6 lg:mt-12">
-    <HeroArtist data={mainArtistsData["wilkinson"]} class="w-48 lg:top-2 lg:w-50">
-      <Wilkinson class="w-full" />
-    </HeroArtist>
-    <HeroArtist data={mainArtistsData["tommy-cash"]} class="w-48 lg:-top-2 lg:w-56" delay="100">
-      <Tommy class="w-full" />
-    </HeroArtist>
-    <HeroArtist data={mainArtistsData["brennan-heart"]} class="w-48 lg:top-3 lg:w-52" delay="200">
-      <Brennan class="w-full" />
+    <HeroArtist data={mainArtistsData["dimension"]} class="w-48 lg:top-2 lg:w-50">
+      <Dimension class="w-full" />
     </HeroArtist>
 
-    <HeroArtist data={mainArtistsData["5miinust"]} class="w-48 lg:-top-2 lg:w-[150px]" delay="300">
-      <ViisMiinust class="w-full" />
+    <HeroArtist data={mainArtistsData["rudim3ntal"]} class="w-48 lg:-top-2 lg:w-56" delay="100">
+      <Rudim3Ntal class="w-full" />
     </HeroArtist>
-    <HeroArtist data={mainArtistsData["delta-heavy"]} class="w-48 lg:top-2 lg:w-40" delay="400"><Delta class="w-full" /> </HeroArtist>
-    <HeroArtist data={mainArtistsData["nublu"]} class="w-48 lg:top-2 lg:w-40" delay="500">
+
+    <HeroArtist data={mainArtistsData["bassjackers"]} class="w-48 lg:top-3 lg:w-52" delay="200">
+      <BassJackers class="w-full" />
+    </HeroArtist>
+
+    <HeroArtist data={mainArtistsData["ran-d"]} class="w-48 lg:-top-2 lg:w-[175px]" delay="300">
+      <RanD class="w-full" />
+    </HeroArtist>
+
+    <HeroArtist data={mainArtistsData["nublu"]} class="w-48 lg:top-2 lg:w-40" delay="400">
       <Nublu class="w-full" />
     </HeroArtist>
-    <HeroArtist data={mainArtistsData["bedwetters"]} class="w-48 lg:-top-1 lg:w-[150px]" delay="600">
-      <Bedwetters class="w-full" />
+
+    <HeroArtist data={mainArtistsData["terminaator"]} class="w-48 lg:-top-1 lg:w-[150px]" delay="500">
+      <Terminaator class="w-full" />
     </HeroArtist>
 
-    <HeroArtist data={mainArtistsData["metrik"]} class="w-48 lg:-top-2 lg:w-[130px]" delay="700">
-      <Metrik class="w-full" />
-    </HeroArtist>
-    <HeroArtist data={mainArtistsData["songer"]} class="w-48 lg:top-6 lg:w-[140px]" delay="800">
-      <Songer class="w-full" />
-    </HeroArtist>
-    <HeroArtist data={mainArtistsData["fox-stevenson"]} class="w-48 lg:top-4 lg:w-[140px]" delay="900">
-      <Fox class="w-full" />
-    </HeroArtist>
-    <HeroArtist data={mainArtistsData["dada-jones"]} class="w-48 lg:-top-1 lg:w-[120px]" delay="1000">
-      <Dada class="w-full" />
+    <HeroArtist data={mainArtistsData["smilers"]} class="w-48 lg:-top-1 lg:w-[155px]" delay="600">
+      <Smilers class="w-full" />
     </HeroArtist>
   </div>
 
