@@ -1,5 +1,6 @@
 ---
 import Coolbet from "./Coolbet.astro";
+import MonsterMusic from "@lib/svg/MonsterMusic.astro";
 
 interface Props {
   language: Language;
@@ -17,13 +18,9 @@ const dateText = language === "et" ? "22-23 JUUNI" : "22-23 JUNE";
     animation: slide-fade-up 0.25s ease-out forwards;
   }
 </style> -->
-<div class="relative pt-4 pl-14 pr-4 xl:pl-0 w-full flex justify-center items-center">
-  <div class="w-full max-w-[150px] min-w-24">
-    <a href="https://www.coolbet.com/" aria-label="Coolbet logo" class="block outline-none group" data-astro-reload>
-      <Coolbet class="h-16 fill-pj-blue group-hover:fill-white group-focus:fill-white" />
-    </a>
-  </div>
-  <div class="pl-2 font-bold font-sans text-base xs:text-xl text-pj-blue">{presentsText}</div>
+<div class="relative pt-0 pb-2 pl-14 pr-4 xl:pl-0 w-full flex flex-col justify-center items-center">
+  <MonsterMusic class="h-16 fill-pj-blue group-hover:fill-white group-focus:fill-white" />
+  <div class="font-bold font-sans text-lg text-pj-blue -mt-5">{presentsText}</div>
 </div>
 
 <div class="relative pl-14 pr-4 xl:pl-0 w-full flex justify-center">
