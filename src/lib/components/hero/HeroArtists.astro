@@ -2,7 +2,6 @@
 import Terminaator from "@lib/svg/Terminaator.astro";
 import Nublu from "@lib/svg/Nublu.astro";
 import RanD from "@lib/svg/RanD.astro";
-import Smilers from "@lib/svg/Smilers.astro";
 import Dimension from "@lib/svg/Dimension.astro";
 import BassJackers from "@lib/svg/BassJackers.astro";
 import HeroArtist from "./HeroArtist.astro";
@@ -15,7 +14,7 @@ interface Props {
 
 const { artistsData } = Astro.props;
 
-let mainArtistsList = ["dimension", "rudimental", "bassjackers", "andromedik", "ran-d", "nublu", "terminaator"];
+let mainArtistsList = ["dimension", "rudim3ntal", "bassjackers", "andromedik", "ran-d", "nublu", "terminaator"];
 
 let mainArtistsData: Record<string, { title: string; slug: string; picture: PictureData }>;
 
@@ -64,7 +63,7 @@ otherArtistsData.sort(compareByName); // Sort by name
       <Dimension class="w-full" />
     </HeroArtist>
 
-    <HeroArtist data={mainArtistsData["rudimental"]} class="w-48 lg:-top-2 lg:w-56" delay="100">
+    <HeroArtist data={mainArtistsData["rudim3ntal"]} class="w-48 lg:-top-2 lg:w-56" delay="100">
       <Rudimental class="w-full" />
     </HeroArtist>
 
