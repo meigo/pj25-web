@@ -7,11 +7,11 @@ const htmlFilePath = "icons/temp/icons-index.html"; // HTML file.
 const dest = "./public/"; // Output directory path.
 
 const metaDescription =
-  "Pühajärve jaanituli 2024 peaesinejateks on Nervo, Luude, Quintino, A.M.C, 1991 ja Issey Cross. Lisaks on esindatud eesti artiste paremik.";
+  "Pühajärve jaanituli 2026 peaesinejateks on Nervo, Luude, Quintino, A.M.C, 1991 ja Issey Cross. Lisaks on esindatud eesti artiste paremik.";
 
 const configuration = {
   path: "/", // Path for overriding default icons path. `string`
-  appName: "Pühajärve jaanituli 2024", // Your application's name. `string`
+  appName: "Pühajärve jaanituli 2026", // Your application's name. `string`
   appShortName: null, // Your application's short_name. `string`. Optional. If not set, appName will be used
   appDescription: metaDescription, // Your application's description. `string`
   developerName: "Meigo Kukk", // Your (or your developer's) name. `string`
