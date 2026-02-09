@@ -21,7 +21,11 @@ let mainArtistsData: Record<string, { title: string; slug: string; picture: Pict
 
 let otherArtistsData: ArtistData[];
 
-let delay = 0;
+const delayStep = 100;
+let delayIndex = 0;
+function nextDelay() {
+  return delayIndex++ * delayStep;
+}
 
 function compareByName(a: ArtistData, b: ArtistData) {
   return a.name.localeCompare(b.name);
@@ -60,35 +64,35 @@ otherArtistsData.sort(compareByName); // Sort by name
 
 <div class="flex flex-col items-center">
   <div class="flex flex-wrap items-center justify-center mt-6 lg:mt-16">
-    <HeroArtist data={mainArtistsData["ran-d"]} class="w-48 lg:top-3 lg:w-36" delay="300">
+    <HeroArtist data={mainArtistsData["ran-d"]} class="w-48 lg:top-3 lg:w-36" delay={nextDelay()}>
       <RanD class="w-full" />
     </HeroArtist>
 
-    <HeroArtist data={mainArtistsData["dimension"]} class="w-48 lg:-top-1 lg:w-48">
+    <HeroArtist data={mainArtistsData["dimension"]} class="w-48 lg:-top-1 lg:w-48" delay={nextDelay()}>
       <Dimension class="w-full" />
     </HeroArtist>
 
-    <HeroArtist data={mainArtistsData["rudim3ntal"]} class="w-48 lg:-top-1 lg:w-48" delay="100">
+    <HeroArtist data={mainArtistsData["rudim3ntal"]} class="w-48 lg:-top-1 lg:w-48" delay={nextDelay()}>
       <Rudimental class="w-full" />
     </HeroArtist>
 
-    <HeroArtist data={mainArtistsData["bassjackers"]} class="w-48 lg:top-3 lg:w-36" delay="200">
+    <HeroArtist data={mainArtistsData["bassjackers"]} class="w-48 lg:top-3 lg:w-36" delay={nextDelay()}>
       <BassJackers class="w-full" />
     </HeroArtist>
 
-    <HeroArtist data={mainArtistsData["andromedik"]} class="w-48 lg:-top-1 lg:w-40" delay="400">
+    <HeroArtist data={mainArtistsData["andromedik"]} class="w-48 lg:-top-1 lg:w-40" delay={nextDelay()}>
       <Andromedik class="w-full" />
     </HeroArtist>
 
-    <HeroArtist data={mainArtistsData["nublu"]} class="w-48 lg:top-2 lg:w-40" delay="500">
+    <HeroArtist data={mainArtistsData["nublu"]} class="w-48 lg:top-2 lg:w-40" delay={nextDelay()}>
       <Nublu class="w-full" />
     </HeroArtist>
 
-    <HeroArtist data={mainArtistsData["terminaator"]} class="w-48 lg:top-2 lg:w-40" delay="600">
+    <HeroArtist data={mainArtistsData["terminaator"]} class="w-48 lg:top-2 lg:w-40" delay={nextDelay()}>
       <Terminaator class="w-full" />
     </HeroArtist>
 
-    <HeroArtist data={mainArtistsData["smilers"]} class="w-48 lg:-top-1 lg:w-40" delay="700">
+    <HeroArtist data={mainArtistsData["smilers"]} class="w-48 lg:-top-1 lg:w-40" delay={nextDelay()}>
       <Smilers class="w-full" />
     </HeroArtist>
   </div>
