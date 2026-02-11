@@ -1,14 +1,29 @@
 ---
 import ContainerSection from "@components/ContainerSection.astro";
+import SuggestArtistModal from "@lib/components/SuggestArtistModal.svelte";
 
 interface Props {
   data?: ScheduleSectionData;
   language: Language;
 }
 
-
-
 const { data, language="et" } = Astro.props;
+
+const suggestLabel = language === "et" ? "Soovita artisti" : "Suggest artist";
+
+// Replace "HH:MM -" lines with a suggest artist button in the CMS HTML
+// CMS format: <strong>21:30</strong> -<br> or <strong>00:00</strong>&nbsp;-
+function addSuggestButtons(html: string): string {
+  return html.replace(
+    /(<strong>\s*\d{1,2}[.:]\d{2}\s*<\/strong>)\s*(?:&nbsp;)*\s*[\-–—]+/g,
+    (_, timeTag) => {
+      const time = timeTag.replace(/<\/?strong>/g, '').trim();
+      return `${timeTag} <button class="suggest-artist-btn" data-time="${time}">${suggestLabel}</button>`;
+    }
+  );
+}
+
+const processedTexts = data?.text?.map(addSuggestButtons);
 ---
 
 <ContainerSection id="schedule" color="pj-yellow-light" colorGradient="pj-mint">
@@ -23,10 +38,10 @@ const { data, language="et" } = Astro.props;
 
   <!-- TEXTS -->
   {
-    data.text && (
+    processedTexts && (
       <div class="flex justify-center pl-3 sm:pl-0 mt-8 sm:mt-20">
         <div class="grid grid-cols-1 gap-x-24 gap-y-16 md:grid-cols-2 schedule-section-text">
-          {data.text.map((text) => (
+          {processedTexts.map((text) => (
             <div class="md:justify-self-end" set:html={text} />
           ))}
         </div>
@@ -37,6 +52,8 @@ const { data, language="et" } = Astro.props;
       </div>
     )
   }
+
+  <SuggestArtistModal {language} client:load />
 </ContainerSection>
 
 <style lang="postcss">
@@ -66,5 +83,9 @@ const { data, language="et" } = Astro.props;
 
   :global(.schedule-section-text p, ul) {
     @apply mb-4 mt-4;
+  }
+
+  :global(.suggest-artist-btn) {
+    @apply relative -top-0.5 inline-block px-3 pt-0.5 pb-0 ml-1 text-sm font-semibold text-white uppercase rounded-full bg-pj-pink hover:bg-pj-pink/80 hover:cursor-pointer transition-colors;
   }
 </style>

@@ -12,13 +12,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($email) && !empty($message)) {
         try {
             $mail = new PHPMailer();
-            // $mail->SMTPDebug = 4; 
+            // $mail->SMTPDebug = 4;
 
             $to = "kontakt@jaanituli.ee"; // Change this to your email
 
             $emailParts = explode(separator: '@', string: $email);
             $name = ucfirst(string: $emailParts[0]);
+
+            $allowedSubjects = [
+                "suggest-artist" => "Artisti soovitus Pühajärve jaanitulele",
+            ];
+
             $subject = "Sõnum Pühajärve jaanitule veebilehelt";
+            if (!empty($_POST["subject"]) && isset($allowedSubjects[$_POST["subject"]])) {
+                $subject = $allowedSubjects[$_POST["subject"]];
+            }
             $mailLink = "<a href='mailto:$email'>$email</a>";
 
             $mail->isSMTP();
