@@ -7,9 +7,8 @@ import Layout from "../../layouts/MediaLayout.astro";
 import MediaMenu from "@lib/components/menu/MediaMenu.astro";
 import Picture from "@lib/components/Picture.astro";
 
-const headers = { "content-type": "application/json" };
-
 export async function getStaticPaths() {
+  const headers = { "content-type": "application/json" };
   // Fetch info section for both languages to get all possible images
   const [resEt, resEn] = await Promise.all([
     fetchWithRetry(`${API_URL}content/item/infoSection?locale=et`, { headers }),
