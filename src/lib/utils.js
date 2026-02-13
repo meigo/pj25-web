@@ -79,9 +79,84 @@ export function getFileFromPath(path) {
 export function slugify(str) {
   str = str.replace(/^\s+|\s+$/g, ""); // trim leading/trailing white space
   str = str.toLowerCase(); // convert string to lowercase
+
+  // Map Estonian characters to ASCII
+  const map = {
+    ä: "a",
+    ö: "o",
+    õ: "o",
+    ü: "u",
+    š: "s",
+    ž: "z",
+  };
+
+  str = str.replace(/[äöõüšž]/g, (match) => map[match]);
+
   str = str
     .replace(/[^a-z0-9 -]/g, "") // remove any non-alphanumeric characters
     .replace(/\s+/g, "-") // replace spaces with hyphens
     .replace(/-+/g, "-"); // remove consecutive hyphens
   return str;
 }
+
+/**
+ * @param {string} url
+ * @param {RequestInit} options
+ * @param {number} retries
+ * @param {number} backoff
+ * @returns {Promise<Response>}
+ */
+export async function fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
+  try {
+    const res = await fetch(url, options);
+    if (!res.ok && retries > 0 && res.status >= 500) {
+      throw new Error(`Server error: ${res.status}`);
+    }
+    return res;
+  } catch (err) {
+    if (retries <= 0) throw err;
+    console.warn(`Fetch failed for ${url}, retrying in ${backoff}ms... (${retries} left). Error: ${err.message}`);
+    await new Promise((resolve) => setTimeout(resolve, backoff));
+    return fetchWithRetry(url, options, retries - 1, backoff * 2);
+  }
+}
+
+/**
+ * Creates a concurrency limiter.
+ * @param {number} concurrency
+ */
+export function createLimit(concurrency) {
+  let activeCount = 0;
+  const queue = [];
+
+  const next = () => {
+    activeCount--;
+    if (queue.length > 0) {
+      queue.shift()();
+    }
+  };
+
+  return (fn) => {
+    return new Promise((resolve, reject) => {
+      const run = async () => {
+        activeCount++;
+        try {
+          const result = await fn();
+          resolve(result);
+        } catch (err) {
+          reject(err);
+        } finally {
+          next();
+        }
+      };
+
+      if (activeCount < concurrency) {
+        run();
+      } else {
+        queue.push(run);
+      }
+    });
+  };
+}
+
+

@@ -3,7 +3,6 @@ import { globby } from "globby";
 import { minify } from "html-minifier";
 
 // Get all HTML files from the output directory
-const path = "./.dist/";
 const files = await globby(`./dist/**/*.html`);
 
 await Promise.all(

@@ -9,7 +9,8 @@
     "build": "astro build && node process-html.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "icons": "node icons/generate.js"
+    "icons": "node icons/generate.js",
+    "test": "vitest run"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -36,6 +37,11 @@
     "typescript": "^5.8.2"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.10"
+    "@tailwindcss/forms": "^0.5.10",
+    "@types/fs-extra": "^11.0.4",
+    "@types/html-minifier": "^4.0.6",
+    "@vitest/ui": "^4.0.18",
+    "svelte-check": "^4.3.6",
+    "vitest": "^4.0.18"
   }
 }

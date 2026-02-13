@@ -42,7 +42,7 @@ const reversedData = data && data.reverse();
     <div class="absolute inset-0">
       {count == 1 ? (
         <div class="absolute inset-0">
-          <Picture data={data[0]} />
+          <Picture data={data[0]} lazy={true} />
         </div>
       ) : (
         reversedData.map((pictureData, index) => (
@@ -52,6 +52,7 @@ const reversedData = data && data.reverse();
           >
             <Picture
               data={pictureData}
+              lazy={true}
               sizes="(max-width: 630px) 500px, (max-width: 1250px) 70vw, 100vw"
               class="absolute inset-0 object-cover w-full h-full max-w-none"
             />

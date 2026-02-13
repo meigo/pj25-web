@@ -53,7 +53,7 @@
     isSubmitting = true;
 
     try {
-      const result = await subscribeToNewsletter(email);
+      const result = await subscribeToNewsletter(email, form.email.value);
       message = successMessage;
       submitSuccess = true;
     } catch (error) {
@@ -64,12 +64,13 @@
     isSubmitting = false;
   }
 
-  async function subscribeToNewsletter(email) {
+  async function subscribeToNewsletter(email, honeypot) {
     try {
       const response = await fetch("/newsletter.php", {
         method: "POST",
         body: JSON.stringify({
-          email: email,
+          liame: email,
+          email: honeypot,
         }),
       });
       const data = await response.json();

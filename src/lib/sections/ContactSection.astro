@@ -30,7 +30,7 @@ const submitLabel = language === "et" ? "Saada sõnum" : "Send message";
 
   const responseMessageElement = document.getElementById("response-message") as HTMLElement;
 
-  async function submit(e) {
+  async function submit(e: SubmitEvent) {
     e.preventDefault();
 
     submitButton.disabled = true;
@@ -47,9 +47,6 @@ const submitLabel = language === "et" ? "Saada sõnum" : "Send message";
     if (!formData.get("liame") || !formData.get("message")) {
       return;
     }
-
-    formData.set("email", formData.get("liame"));
-    formData.delete("liame");
 
     try {
       const request = await fetch("/contact-form.php", {

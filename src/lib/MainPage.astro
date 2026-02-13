@@ -16,15 +16,18 @@ interface Props {
 
 const { language } = Astro.props;
 
-const siteData = await getSiteData(language); // WILL BE SAVED TO STORE
-const menuData = await getMenuData(language);
-const artistsSectionData = await getArtistsSectionData(language);
-const scheduleSectionData = await getScheduleSectionData(language);
-const infoSectionData = await getInfoSectionData(language);
-const imageSectionsData = await getBackgroundsData();
+// Fetch all data in parallel to avoid waterfalls
+const [siteData, menuData, artistsSectionData, scheduleSectionData, infoSectionData, imageSectionsData] = await Promise.all([
+  getSiteData(language),
+  getMenuData(language),
+  getArtistsSectionData(language),
+  getScheduleSectionData(language),
+  getInfoSectionData(language),
+  getBackgroundsData(),
+]);
 ---
 
-<Layout {language} title={siteData.title} og schema performers={artistsSectionData.artists?.map((a) => a.name) ?? []}>
+<Layout {language} title={siteData.title} og schema performers={artistsSectionData.artists?.map((a: ArtistData) => a.name) ?? []}>
   <h1 class="absolute text-xs text-pj-blue -top-10">{siteData.title}</h1>
 
   <HeroSection {language} artistsData={artistsSectionData.artists} />

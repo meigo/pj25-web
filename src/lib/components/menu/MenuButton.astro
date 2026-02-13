@@ -13,9 +13,11 @@ interface Props {
   class?: string;
   reload?: boolean;
   tabIndex?: string;
+  target?: string;
+  rel?: string;
 }
 
-const { href, label, icon, delay = 0, class: className = "bg-pj-mint", reload, tabIndex = "0" } = Astro.props;
+const { href, label, icon, delay = 0, class: className = "bg-pj-mint", reload, tabIndex = "0", target, rel } = Astro.props;
 
 const isReload = reload ? { "data-astro-reload": "" } : {};
 const isAnchor = href.substring(0, 1) === "#";
@@ -23,6 +25,8 @@ const isAnchor = href.substring(0, 1) === "#";
 
 <a
   {href}
+  {target}
+  {rel}
   class="outline-none group menu-item"
   class:list={[{ "menu-anchor": isAnchor }]}
   aria-label={label}

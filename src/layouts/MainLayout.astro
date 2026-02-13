@@ -32,7 +32,7 @@ const langBase = `${base}${language === "en" ? "en/" : ""}`;
 
   //***************************************************/
 
-  let lenis;
+  let lenis: Lenis;
 
   function raf(time: number) {
     lenis.raf(time);
@@ -93,8 +93,7 @@ const langBase = `${base}${language === "en" ? "en/" : ""}`;
     <title>{title}</title>
     {data.description && <meta name="description" content={data.description} />}
     {data.keywords && <meta name="keywords" content={data.keywords.join(", ")} />}
-    <meta name="robots" content={`${noindex ? "noindex" : "index"}, ${nofollow ? "nofollow" : "follow"}`} />
-    <meta name="robots" content="max-image-preview:large" />
+    <meta name="robots" content={`${noindex ? "noindex" : "index"}, ${nofollow ? "nofollow" : "follow"}, max-image-preview:large`} />
     <meta name="google" content="nositelinkssearchbox" />
 
     <!-- OPEN GRAPH -->
@@ -116,6 +115,7 @@ const langBase = `${base}${language === "en" ? "en/" : ""}`;
     {
       schema && (
         <script
+          is:inline
           type="application/ld+json"
           set:html={JSON.stringify({
             "@context": "https://schema.org",

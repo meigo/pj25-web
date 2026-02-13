@@ -4,9 +4,10 @@ interface Props {
   data?: PictureData;
   sizes?: string;
   lazy?: boolean;
+  priority?: boolean;
 }
 
-const { class: className, data, sizes = "100vw", lazy = false } = Astro.props;
+const { class: className, data, sizes = "100vw", lazy = false, priority = false } = Astro.props;
 ---
 
 {
@@ -24,6 +25,8 @@ const { class: className, data, sizes = "100vw", lazy = false } = Astro.props;
         class={className}
         style={`aspect-ratio: ${data.img.w} / ${data.img.h};`}
         loading={lazy ? "lazy" : "eager"}
+        decoding="async"
+        fetchpriority={priority ? "high" : "auto"}
       />
     </picture>
   )

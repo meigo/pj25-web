@@ -1,6 +1,6 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
-const plugin = require("tailwindcss/plugin");
-// const colors = require("tailwindcss/colors");
+import defaultTheme from "tailwindcss/defaultTheme";
+import plugin from "tailwindcss/plugin";
+import forms from "@tailwindcss/forms";
 
 /** @type {import('tailwindcss').Config}*/
 const config = {
@@ -125,7 +125,7 @@ const config = {
   },
 
   plugins: [
-    require("@tailwindcss/forms"),
+    forms,
     plugin(function ({ addUtilities, matchVariant }) {
       addUtilities({
         ".horizontal-tb": {
@@ -149,4 +149,4 @@ const config = {
   ],
 };
 
-module.exports = config;
+export default config;

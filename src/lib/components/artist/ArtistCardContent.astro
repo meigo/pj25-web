@@ -22,6 +22,7 @@ const isVideo = !!data.video_id;
       data.picture ? (
         <Picture
           data={data.picture}
+          lazy={true}
           sizes="(max-width: 770px) 80vw, (max-width: 1020px) 40vw, (max-width: 1150px) 25vw, 400px"
           class="absolute inset-0 object-cover w-full h-full max-w-none"
         />

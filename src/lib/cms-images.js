@@ -1,10 +1,11 @@
-import { capitalize } from "@lib/utils";
+import { capitalize, fetchWithRetry, createLimit } from "@lib/utils";
 import { infoImages } from "@lib/store";
 import { parse } from "node-html-parser";
-import { CMS_API_KEY, API_URL, UPLOAD_URL } from "../config.js";
+import { API_URL, UPLOAD_URL } from "../config.js";
 
 const headers = { "content-type": "text/html; charset=utf-8" };
 const jsonHeaders = { "content-type": "application/json" };
+const limit = createLimit(10); // Max 10 concurrent CMS requests
 
 /**
  * @param {string} id
@@ -13,22 +14,26 @@ const jsonHeaders = { "content-type": "application/json" };
  * @returns
  */
 async function getImageSource(id, sizes, format) {
-  let s = "";
-  for (const size of sizes) {
-    const res = await fetch(`${API_URL}assets/image/${id}?w=${size}&mime=${format}`, { headers });
-    if (res.ok) {
-      const data = await res.text();
-      s += `${data} ${size}w, `;
-    }
-  }
-  return s.slice(0, -2);
+  const results = await Promise.all(
+    sizes.map(async (size) => {
+      return limit(async () => {
+        const res = await fetchWithRetry(`${API_URL}assets/image/${id}?w=${size}&mime=${format}`, { headers });
+        if (res.ok) {
+          const data = await res.text();
+          return `${data} ${size}w`;
+        }
+        return null;
+      });
+    })
+  );
+  return results.filter(Boolean).join(", ");
 }
 
 /**
  * @param {string} path
  */
 async function getImageDataByPath(path) {
-  const res = await fetch(`${API_URL}custom/asset?path=${path}`, { headers: jsonHeaders });
+  const res = await limit(() => fetchWithRetry(`${API_URL}custom/asset?path=${path}`, { headers: jsonHeaders }));
   const data = await res.text();
   return JSON.parse(data);
 }
@@ -41,9 +46,11 @@ async function getImageDataByPath(path) {
 export async function getArtistPictureData(data) {
   const sizes = [250, 400, 700];
 
+  const [webpSrcset, jpegSrcset] = await Promise.all([getImageSource(data._id, sizes, "webp"), getImageSource(data._id, sizes, "jpeg")]);
+
   const sources = [
-    { type: "webp", srcset: await getImageSource(data._id, sizes, "webp") },
-    { type: "jpeg", srcset: await getImageSource(data._id, sizes, "jpeg") },
+    { type: "webp", srcset: webpSrcset },
+    { type: "jpeg", srcset: jpegSrcset },
   ];
 
   /** @type {PictureData} */
@@ -61,14 +68,16 @@ export async function getArtistPictureData(data) {
  * @param {string} id
  */
 export async function getImagePagePictureData(id) {
-  const res = await fetch(`${API_URL}assets/${id}`, { headers });
+  const res = await limit(() => fetchWithRetry(`${API_URL}assets/${id}`, { headers }));
   const data = await res.json();
 
   const sizes = [400, 800, 1500];
 
+  const [webpSrcset, jpegSrcset] = await Promise.all([getImageSource(data._id, sizes, "webp"), getImageSource(data._id, sizes, "jpeg")]);
+
   const sources = [
-    { type: "webp", srcset: await getImageSource(data._id, sizes, "webp") },
-    { type: "jpeg", srcset: await getImageSource(data._id, sizes, "jpeg") },
+    { type: "webp", srcset: webpSrcset },
+    { type: "jpeg", srcset: jpegSrcset },
   ];
 
   /** @type {PictureData} */
@@ -90,9 +99,11 @@ async function getInfoSectionPictureMarkup(data) {
   const sizes = [400, 800];
   const sizesAttr = "(min-width: 1024px) 50vw, 95vw";
 
+  const [webpSrcset, jpegSrcset] = await Promise.all([getImageSource(data._id, sizes, "webp"), getImageSource(data._id, sizes, "jpeg")]);
+
   const sources = [
-    { type: "webp", srcset: await getImageSource(data._id, sizes, "webp") },
-    { type: "jpeg", srcset: await getImageSource(data._id, sizes, "jpeg") },
+    { type: "webp", srcset: webpSrcset },
+    { type: "jpeg", srcset: jpegSrcset },
   ];
 
   let s = `<div class="overflow-hidden rounded-4xl border-4 border-pj-blue focus-within:border-white mt-6">`;
@@ -114,6 +125,25 @@ async function getInfoSectionPictureMarkup(data) {
 /**
  * @param {string} html
  */
+export async function getImageIdsFromHtml(html) {
+  const root = parse(html);
+  const imgElements = root.querySelectorAll("img");
+  const images = [];
+
+  await Promise.all(
+    imgElements.map(async (img) => {
+      const src = img.attributes.src;
+      const imageData = await getImageDataByPath(src);
+      images.push({ id: imageData._id, title: imageData.title });
+    })
+  );
+
+  return images;
+}
+
+/**
+ * @param {string} html
+ */
 export async function getInfoSectionTextWithPictures(html) {
   const root = parse(html);
 
@@ -125,13 +155,18 @@ export async function getInfoSectionTextWithPictures(html) {
 
   /** @type {{id:string, title:string}[]} */
   const images = [];
-  for (const img of imgElements) {
-    // GET IMAGE DATA FROM COCKPIT AND CREATE/CACHE RESPONSIVE IMAGES
-    const imageData = await getImageDataByPath(img.attributes.src);
-    images.push({ id: imageData._id, title: imageData.title });
-    const pictureMarkup = await getInfoSectionPictureMarkup(imageData);
-    pictureMarkups[img.attributes.src] = pictureMarkup;
-  }
+
+  await Promise.all(
+    imgElements.map(async (img) => {
+      const src = img.attributes.src;
+      // GET IMAGE DATA FROM COCKPIT AND CREATE/CACHE RESPONSIVE IMAGES
+      const imageData = await getImageDataByPath(src);
+      images.push({ id: imageData._id, title: imageData.title });
+      const pictureMarkup = await getInfoSectionPictureMarkup(imageData);
+      pictureMarkups[src] = pictureMarkup;
+    })
+  );
+
   // STORE FOR STATIC ROUTES GENERATION
   infoImages.set(images);
 

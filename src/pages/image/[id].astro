@@ -1,13 +1,31 @@
 ---
 import "../../app.css";
-import { getImagePagePictureData } from "@lib/cms-images";
-import { infoImages } from "@lib/store";
+import { getImagePagePictureData, getImageIdsFromHtml } from "@lib/cms-images";
+import { API_URL } from "../../config.js";
+import { fetchWithRetry } from "@lib/utils";
 import Layout from "../../layouts/MediaLayout.astro";
 import MediaMenu from "@lib/components/menu/MediaMenu.astro";
 import Picture from "@lib/components/Picture.astro";
 
+const headers = { "content-type": "application/json" };
+
 export async function getStaticPaths() {
-  return infoImages.get().map(({ id, title }) => {
+  // Fetch info section for both languages to get all possible images
+  const [resEt, resEn] = await Promise.all([
+    fetchWithRetry(`${API_URL}content/item/infoSection?locale=et`, { headers }),
+    fetchWithRetry(`${API_URL}content/item/infoSection?locale=en`, { headers }),
+  ]);
+
+  const [dataEt, dataEn] = await Promise.all([resEt.json(), resEn.json()]);
+
+  const imagesEt = dataEt.text ? await getImageIdsFromHtml(dataEt.text) : [];
+  const imagesEn = dataEn.text ? await getImageIdsFromHtml(dataEn.text) : [];
+
+  // Combine and deduplicate images
+  const allImages = [...imagesEt, ...imagesEn];
+  const uniqueImages = Array.from(new Map(allImages.map((img) => [img.id, img])).values());
+
+  return uniqueImages.map(({ id, title }) => {
     return {
       params: { id },
       props: { title },

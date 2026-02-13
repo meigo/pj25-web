@@ -17,7 +17,7 @@ const { class: className, data, delay = 0 } = Astro.props;
         <div class="absolute inset-0 bg-pj-blue-light"></div>
 
         <div class="absolute inset-0 transition duration-200 group-hover:scale-105 group-focus:scale-105">
-          <Picture data={data?.picture} lazy={false} sizes="250px" class="absolute inset-0 object-cover w-full h-full max-w-none" />
+          <Picture data={data?.picture} lazy={false} priority={true} sizes="250px" class="absolute inset-0 object-cover w-full h-full max-w-none" />
         </div>
       </div>
 

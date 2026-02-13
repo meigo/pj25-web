@@ -6,14 +6,21 @@ import YtPlayer from "@lib/components/YtPlayer.astro";
 import MediaMenu from "@lib/components/menu/MediaMenu.astro";
 
 export async function getStaticPaths() {
-  const artistsSectionData: ArtistsSectionData = await getArtistsSectionData("et");
-  return artistsSectionData.artists
-    .filter((a) => !!a.video_id)
-    .map((a) => {
-      console.log(a.video_id);
+  const [dataEt, dataEn] = await Promise.all([getArtistsSectionData("et"), getArtistsSectionData("en")]);
 
-      return { params: { id: a.video_id }, props: { title: a.name } };
-    });
+  const allArtists = [...(dataEt.artists || []), ...(dataEn.artists || [])];
+
+  // Deduplicate by video_id
+  const videoMap = new Map();
+  allArtists.forEach((a) => {
+    if (a.video_id && !videoMap.has(a.video_id)) {
+      videoMap.set(a.video_id, { id: a.video_id, title: a.name });
+    }
+  });
+
+  return Array.from(videoMap.values()).map((video) => {
+    return { params: { id: video.id }, props: { title: video.title } };
+  });
 }
 
 const { id } = Astro.params;

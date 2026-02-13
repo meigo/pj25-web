@@ -1,3 +1,9 @@
 RewriteEngine on
 RewriteCond %{HTTP_HOST} ^www\.jaanituli\.ee$ [NC]
 RewriteRule ^(.*)$ https://jaanituli.ee/$1 [R=301,L]
+
+# Block access to .env files
+<Files ".env">
+    Order allow,deny
+    Deny from all
+</Files>
