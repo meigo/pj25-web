@@ -1,8 +1,16 @@
 <?php
-$env = parse_ini_file(filename: '.env');
+header('Content-Type: application/json');
 
-$apiKey = $env['BREVO_API_KEY'];
-$listId = (int) $env['BREVO_LIST_ID'];
+$envFile = __DIR__ . '/.env';
+if (file_exists($envFile)) {
+    $env = parse_ini_file($envFile);
+} else {
+    echo json_encode(["success" => false, "error" => "Configuration missing."]);
+    exit;
+}
+
+$apiKey = $env['BREVO_API_KEY'] ?? '';
+$listId = (int) ($env['BREVO_LIST_ID'] ?? 0);
 $url = "https://api.brevo.com/v3/contacts";
 
 // Get POST data

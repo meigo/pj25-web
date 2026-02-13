@@ -4,6 +4,11 @@ RewriteRule ^(.*)$ https://jaanituli.ee/$1 [R=301,L]
 
 # Block access to .env files
 <Files ".env">
-    Order allow,deny
-    Deny from all
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
 </Files>
