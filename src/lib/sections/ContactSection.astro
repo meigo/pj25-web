@@ -28,48 +28,89 @@ const submitLabel = language === "et" ? "Saada sõnum" : "Send message";
       textareaElement.addEventListener("input", autoResize);
     }
 
-    const responseMessageElement = document.getElementById("response-message") as HTMLElement;
+        const responseMessageElement = document.getElementById("response-message") as HTMLElement;
 
-    var language = document.documentElement.lang;
-    const successMessage = language === "et" ? "Sõnum saadetud!" : "Message sent!";
-    const errorMessage =
-      language === "et" ? "Sõnumi saatmine ebaõnnestus! Palun proovi uuesti." : "Failed to send message! Please try again.";
+    
 
-    async function submit(e: SubmitEvent) {
-      e.preventDefault();
+        const language = document.documentElement.lang;
 
-      if (submitButton) submitButton.disabled = true;
+        const successMessage = language === "et" ? "Sõnum saadetud!" : "Message sent!";
 
-      const formData = new FormData(formElement);
+        const errorMessage =
 
-      // H o n e y p o t
-      if (formData.get("email") !== "") {
-        formElement.reset();
-        showResponseMessage(false);
-        return;
-      }
+          language === "et" ? "Sõnumi saatmine ebaõnnestus! Palun proovi uuesti." : "Failed to send message! Please try again.";
 
-      if (!formData.get("liame") || !formData.get("message")) {
-        if (submitButton) submitButton.disabled = false;
-        return;
-      }
+    
 
-      try {
-        const request = await fetch("/contact-form.php", {
-          method: "POST",
-          body: formData,
-        });
-        if (request.ok) {
-          showResponseMessage(true);
-        } else {
-          showResponseMessage(false);
+        async function submit(e: SubmitEvent) {
+
+          e.preventDefault();
+
+    
+
+          if (submitButton) submitButton.disabled = true;
+
+    
+
+          const formData = new FormData(formElement);
+
+    
+
+          // H o n e y p o t
+
+          if (formData.get("email") !== "") {
+
+            formElement.reset();
+
+            showResponseMessage(false);
+
+            return;
+
+          }
+
+    
+
+          if (!formData.get("liame") || !formData.get("message")) {
+
+            if (submitButton) submitButton.disabled = false;
+
+            return;
+
+          }
+
+    
+
+          try {
+
+            const request = await fetch("/contact-form.php", {
+
+              method: "POST",
+
+              body: formData,
+
+            });
+
+            if (request.ok) {
+
+              showResponseMessage(true);
+
+                    } else {
+
+                      showResponseMessage(false);
+
+                    }
+
+                  } catch (_error) { // eslint-disable-line no-unused-vars
+
+                    showResponseMessage(false);
+
+                  }
+
+    
+
+          formElement.reset();
+
         }
-      } catch (error) {
-        showResponseMessage(false);
-      }
-
-      formElement.reset();
-    }
 
     function showResponseMessage(success: boolean = true) {
       if (!responseMessageElement) return;

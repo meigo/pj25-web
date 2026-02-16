@@ -89,7 +89,10 @@ export async function getBackgroundsData() {
   const section1Promises = (data.imageSection1?.images || []).map((image) => getImagePagePictureData(image._id));
   const section2Promises = (data.imageSection2?.images || []).map((image) => getImagePagePictureData(image._id));
 
-  const [section1Results, section2Results] = await Promise.all([Promise.all(section1Promises), Promise.all(section2Promises)]);
+  const [section1Results, section2Results] = await Promise.all([
+    Promise.all(section1Promises),
+    Promise.all(section2Promises),
+  ]);
 
   imageSectionsData.section1 = section1Results;
   imageSectionsData.section2 = section2Results;

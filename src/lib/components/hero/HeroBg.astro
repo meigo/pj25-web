@@ -49,7 +49,12 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
 <style>
   .ground {
     background: rgb(255, 132, 203);
-    background: radial-gradient(circle at center -250px, rgba(255, 123, 172, 1) 10%, rgba(0, 0, 255, 1) 20%, #ff80a6 50%);
+    background: radial-gradient(
+      circle at center -250px,
+      rgba(255, 123, 172, 1) 10%,
+      rgba(0, 0, 255, 1) 20%,
+      #ff80a6 50%
+    );
   }
 </style>
 
@@ -66,7 +71,8 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
             cy="0"
             r="1"
             gradientTransform="matrix(0 -1268.55 1485.66 2.9493 1492.68 1268.03)"
-            gradientUnits="userSpaceOnUse">
+            gradientUnits="userSpaceOnUse"
+          >
             <stop offset="0" style="stop-color:#f3e7f0;stop-opacity:1"></stop>
             <stop offset=".18" style="stop-color:#f3e7f0;stop-opacity:1"> </stop>
             <stop offset=".34" style="stop-color:#fbb03b;stop-opacity:1"></stop>
@@ -96,8 +102,9 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
               y2="0"
               gradientTransform="matrix(-1.76325 433.937 360.149 1.46342 1501.76 780.521)"
               gradientUnits="userSpaceOnUse"
-              ><stop offset="0" style="stop-color:#fff;stop-opacity:1"></stop><stop offset="1" style="stop-color:#fbb03b;stop-opacity:1"
-              ></stop>
+              ><stop offset="0" style="stop-color:#fff;stop-opacity:1"></stop><stop
+                offset="1"
+                style="stop-color:#fbb03b;stop-opacity:1"></stop>
             </linearGradient>
           </defs>
         </svg>
@@ -120,7 +127,8 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
               cy="0"
               r="1"
               gradientTransform="matrix(-214.541 -39.1914 193.19 -43.5229 293.318 61.657)"
-              gradientUnits="userSpaceOnUse">
+              gradientUnits="userSpaceOnUse"
+            >
               <stop offset="0" style="stop-color:#fff;stop-opacity:1"></stop>
               <stop offset=".14" style="stop-color:#fef8c7;stop-opacity:.95"> </stop>
               <stop offset=".29" style="stop-color:#fce62b;stop-opacity:.8"></stop>
@@ -134,7 +142,10 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
         <Fire />
       </div>
       <!-- SMOKE -->
-      <div class="absolute ml-22 sm:ml-10 w-[800px] top-0 opacity-10 scale-x-100 parallax hidden sm:block" data-depth="0.7">
+      <div
+        class="absolute ml-22 sm:ml-10 w-[800px] top-0 opacity-10 scale-x-100 parallax hidden sm:block"
+        data-depth="0.7"
+      >
         <Smoke />
       </div>
     </div>
@@ -156,35 +167,40 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
             d="M0,1156.94l816.382,-0c0,-0 -88.626,-168.055 -119.185,-210.498c-30.527,-42.397 -97.129,-53.082 -105.035,-116.329c-7.906,-63.247 -43.713,-83.267 -66.63,-107.049c-41.047,-42.596 -98.212,-60.279 -168.52,-70.615c-91.917,-13.513 -273.409,58.808 -357.012,6.235l0,498.256Z"
             style="fill:url(#_Linear4);fill-rule:nonzero;"
             class="parallax"
-            data-depth="1.5">
+            data-depth="1.5"
+          >
           </path>
           <path
             id="hill_l_4"
             d="M248.4,1232.87l1.6,14.976l844.156,0.538l-101.666,-96.421c-67.764,-46.606 -121.394,-67.471 -156.988,-100.817c-36.551,-34.242 -100.59,-91.262 -151.008,-84.706c-98.24,12.775 -116.79,-29.821 -218.275,-5.157c-134.991,32.807 -203.484,207.494 -217.819,271.587Z"
             style="fill:url(#_Linear5);fill-rule:nonzero;"
             class="parallax"
-            data-depth="1.2">
+            data-depth="1.2"
+          >
           </path>
           <path
             id="hill_l_3"
             d="M617.481,1039.16c-95.381,7.208 -189.436,71.57 -225.301,82.261c-128.771,38.387 -384.92,32.032 -392.18,36.657l0,141.09l1230.2,-3.995c-0,-0 -18.636,-28.8 -62.683,-45.741c-19.926,-7.664 -38.811,-2.153 -55.716,3.357c-20.464,6.671 -38.025,13.342 -51.013,-3.357c-23.718,-30.494 -33.882,-40.659 -66.07,-38.965c-32.188,1.695 -30.494,-45.741 -67.764,-66.07c-37.271,-20.33 -125.365,-44.047 -157.554,-60.988c-26.149,-13.763 -87.021,-49.153 -151.915,-44.249Z"
             style="fill:url(#_Linear6);fill-rule:nonzero;"
             class="parallax"
-            data-depth="1.0">
+            data-depth="1.0"
+          >
           </path>
           <path
             id="hill_l_2"
             d="M919.409,1237.92c-27.107,10.165 -63.53,65.223 -109.271,60.988c-45.741,-4.236 -106.729,51.671 -106.729,51.671l559.058,-0c-0,-0 2.411,-4.348 -21.177,-5.93c-0,-0 -11.081,2.718 -46.588,-6.777c-35.507,-9.494 -78.777,-49.976 -127.059,-44.046c-23.503,2.886 -52.825,-12.692 -79.861,-28.271c-24.83,-14.309 -47.733,-28.618 -62.419,-28.619c-2.172,-0.001 -4.162,0.312 -5.954,0.984Z"
             style="fill:url(#_Linear7);fill-rule:nonzero;"
             class="parallax"
-            data-depth="0.8">
+            data-depth="0.8"
+          >
           </path>
           <path
             id="hill_l_1"
             d="M0,1411.16c0,0 1312.46,10.632 1327.06,8.808c18.071,-2.259 -26.997,-7.806 -55.059,-11.294c-37.836,-4.704 -104.188,-25.412 -142.305,-35.576c-38.118,-10.165 -69.459,-51.671 -125.365,-46.589c-55.906,5.082 -44.894,-41.506 -104.188,-57.6c-59.294,-16.094 -50.823,-62.958 -88.094,-61.973c-37.271,0.985 -102.776,38.872 -153.599,-28.212c-50.691,-66.909 -115.346,-91.506 -184.931,-105.199c-109.741,-21.595 -473.514,-24.37 -473.514,-24.37l0,362.005Z"
             style="fill:url(#_Linear8);fill-rule:nonzero;"
             class="parallax"
-            data-depth="0.5">
+            data-depth="0.5"
+          >
           </path>
 
           <defs>
@@ -196,8 +212,10 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
               y2="0"
               gradientTransform="rotate(180 367.433 463.661) scale(288.019)"
               gradientUnits="userSpaceOnUse"
-              ><stop offset="0" style="stop-color:#ff7bac;stop-opacity:1"></stop><stop offset=".97" style="stop-color:#00f;stop-opacity:1"
-              ></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"></stop>
+              ><stop offset="0" style="stop-color:#ff7bac;stop-opacity:1"></stop><stop
+                offset=".97"
+                style="stop-color:#00f;stop-opacity:1"></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"
+              ></stop>
             </linearGradient>
             <linearGradient
               id="_Linear5"
@@ -207,8 +225,11 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
               y2="0"
               gradientTransform="rotate(21.763 -2677.158 1796.299) scale(627.5)"
               gradientUnits="userSpaceOnUse"
-              ><stop offset="0" style="stop-color:#00f;stop-opacity:1"></stop><stop offset=".52" style="stop-color:#ff7bac;stop-opacity:1"
-              ></stop><stop offset="1" style="stop-color:#92ffa1;stop-opacity:1"></stop>
+              ><stop offset="0" style="stop-color:#00f;stop-opacity:1"></stop><stop
+                offset=".52"
+                style="stop-color:#ff7bac;stop-opacity:1"></stop><stop
+                offset="1"
+                style="stop-color:#92ffa1;stop-opacity:1"></stop>
             </linearGradient>
             <linearGradient
               id="_Linear6"
@@ -218,8 +239,11 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
               y2="0"
               gradientTransform="translate(359.421 1128.73) scale(870.775)"
               gradientUnits="userSpaceOnUse"
-              ><stop offset="0" style="stop-color:#00f;stop-opacity:1"></stop><stop offset=".52" style="stop-color:#ff7bac;stop-opacity:1"
-              ></stop><stop offset="1" style="stop-color:#92ffa1;stop-opacity:1"></stop>
+              ><stop offset="0" style="stop-color:#00f;stop-opacity:1"></stop><stop
+                offset=".52"
+                style="stop-color:#ff7bac;stop-opacity:1"></stop><stop
+                offset="1"
+                style="stop-color:#92ffa1;stop-opacity:1"></stop>
             </linearGradient>
             <linearGradient
               id="_Linear7"
@@ -231,7 +255,8 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
               gradientUnits="userSpaceOnUse"
               ><stop offset="0" style="stop-color:#92ffa1;stop-opacity:1"></stop><stop
                 offset=".48"
-                style="stop-color:#ff7bac;stop-opacity:1"></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"></stop>
+                style="stop-color:#ff7bac;stop-opacity:1"></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"
+              ></stop>
             </linearGradient>
             <linearGradient
               id="_Linear8"
@@ -241,8 +266,11 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
               y2="0"
               gradientTransform="translate(457.409 1157.92) scale(873.799)"
               gradientUnits="userSpaceOnUse"
-              ><stop offset="0" style="stop-color:#00f;stop-opacity:1"></stop><stop offset=".52" style="stop-color:#ff7bac;stop-opacity:1"
-              ></stop><stop offset="1" style="stop-color:#92ffa1;stop-opacity:1"></stop>
+              ><stop offset="0" style="stop-color:#00f;stop-opacity:1"></stop><stop
+                offset=".52"
+                style="stop-color:#ff7bac;stop-opacity:1"></stop><stop
+                offset="1"
+                style="stop-color:#92ffa1;stop-opacity:1"></stop>
             </linearGradient>
           </defs>
         </svg>
@@ -267,35 +295,40 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
             d="M2374.58,892.796c-39.343,-8.471 -150.097,288.419 -273.896,306.228l899.318,0l0,-546.283c0,-0 -124.418,118.95 -287.091,123.318c-68.136,1.83 -148.271,-23.379 -196.945,-12.103c-52.491,12.159 -103.449,137.008 -141.386,128.84Z"
             style="fill:url(#_Linear9);fill-rule:nonzero;"
             class="parallax"
-            data-depth="1.5">
+            data-depth="1.5"
+          >
           </path>
           <path
             id="hill_r_4"
             d="M2130.66,1097.62c-32.753,22.588 -73.412,72.283 -106.165,69.321c-32.752,-2.961 -109.553,39.102 -169.411,66.208l705.59,2.093l-9.51,-0.029c-77.005,-24.354 -178.006,-144.369 -219.47,-144.369c-42.917,-0 -55.341,-47.435 -93.74,-66.635c-4.545,-2.272 -9.054,-3.295 -13.534,-3.295c-33.37,0.004 -64.884,56.791 -93.76,76.706Z"
             style="fill:url(#_Linear10);fill-rule:nonzero;"
             class="parallax"
-            data-depth="1.2">
+            data-depth="1.2"
+          >
           </path>
           <path
             id="hill_r_3"
             d="M2156.93,1168.44c-40.658,20.329 -64.376,57.6 -116.329,70.023c-51.953,12.423 -175.16,32.635 -126.494,33.882c44.047,1.13 577.128,10.165 577.128,10.165c-0,-0 7.906,-40.659 -79.059,-53.082c-86.964,-12.424 -151.34,-45.177 -185.222,-81.317c-10.427,-11.122 -17.215,-15.399 -22.804,-15.398c-12.574,0.003 -19.073,21.654 -47.22,35.727Z"
             style="fill:url(#_Linear11);fill-rule:nonzero;"
             class="parallax"
-            data-depth="1.0">
+            data-depth="1.0"
+          >
           </path>
           <path
             id="hill_r_2"
             d="M2251.92,1263.15c-25.976,23.718 -106.164,-13.553 -160.376,-18.07c-54.211,-4.518 -117.459,31.623 -155.858,56.471c-38.401,24.847 -204.88,36.621 -156.424,38.399c36.175,1.328 932.805,6.461 1220.74,8.938l0,-349.149c-155.234,-5.483 -387.158,116.846 -439.321,121.21c-91.118,7.622 -117.12,-53.75 -168.58,-30.05c-51.46,23.7 -115.686,149.889 -140.178,172.251Z"
             style="fill:url(#_Linear12);fill-rule:nonzero;"
             class="parallax"
-            data-depth="0.8">
+            data-depth="0.8"
+          >
           </path>
           <path
             id="hill_r_1"
             d="M2291.36,1293.35c-29.364,16.94 -132.141,81.317 -186.352,54.211c-54.212,-27.106 -261.943,45.095 -326.4,59.858c-53.324,12.215 86.49,7.854 822.917,17.88c-22.856,-21.159 -132.78,-48.746 -213.036,-169.22c-10.204,-15.317 -24.813,-17.05 -34.234,-17.049c-27.838,0.004 -40.955,41.662 -62.895,54.32Z"
             style="fill:url(#_Linear13);fill-rule:nonzero;"
             class="parallax"
-            data-depth="0.5">
+            data-depth="0.5"
+          >
           </path>
 
           <defs>
@@ -307,8 +340,10 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
               y2="0"
               gradientTransform="matrix(247.341 0 0 247.341 2246.02 972.858)"
               gradientUnits="userSpaceOnUse"
-              ><stop offset="0" style="stop-color:#ff7bac;stop-opacity:1"></stop><stop offset=".97" style="stop-color:#00f;stop-opacity:1"
-              ></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"></stop>
+              ><stop offset="0" style="stop-color:#ff7bac;stop-opacity:1"></stop><stop
+                offset=".97"
+                style="stop-color:#00f;stop-opacity:1"></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"
+              ></stop>
             </linearGradient>
             <linearGradient
               id="_Linear10"
@@ -320,7 +355,8 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
               gradientUnits="userSpaceOnUse"
               ><stop offset="0" style="stop-color:#92ffa1;stop-opacity:1"></stop><stop
                 offset=".48"
-                style="stop-color:#ff7bac;stop-opacity:1"></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"></stop>
+                style="stop-color:#ff7bac;stop-opacity:1"></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"
+              ></stop>
             </linearGradient>
             <linearGradient
               id="_Linear11"
@@ -332,7 +368,8 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
               gradientUnits="userSpaceOnUse"
               ><stop offset="0" style="stop-color:#92ffa1;stop-opacity:1"></stop><stop
                 offset=".48"
-                style="stop-color:#ff7bac;stop-opacity:1"></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"></stop>
+                style="stop-color:#ff7bac;stop-opacity:1"></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"
+              ></stop>
             </linearGradient><linearGradient
               id="_Linear12"
               x1="0"
@@ -343,7 +380,8 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
               gradientUnits="userSpaceOnUse"
               ><stop offset="0" style="stop-color:#92ffa1;stop-opacity:1"></stop><stop
                 offset=".48"
-                style="stop-color:#ff7bac;stop-opacity:1"></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"></stop>
+                style="stop-color:#ff7bac;stop-opacity:1"></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"
+              ></stop>
             </linearGradient>
             <linearGradient
               id="_Linear13"
@@ -355,7 +393,8 @@ import FireParticles from "@lib/components/particles/FireParticles.astro";
               gradientUnits="userSpaceOnUse"
               ><stop offset="0" style="stop-color:#92ffa1;stop-opacity:1"></stop><stop
                 offset=".48"
-                style="stop-color:#ff7bac;stop-opacity:1"></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"></stop>
+                style="stop-color:#ff7bac;stop-opacity:1"></stop><stop offset="1" style="stop-color:#00f;stop-opacity:1"
+              ></stop>
             </linearGradient>
           </defs>
         </svg>

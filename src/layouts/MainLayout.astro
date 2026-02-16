@@ -60,7 +60,7 @@ const langBase = `${base}${language === "en" ? "en/" : ""}`;
     getMenuAnchorLinks().forEach((anchor) => anchor.removeEventListener("click", smoothScrollToAnchor));
     lenis.destroy(); // Prevent lenis to scroll on next page
 
-    let triggers = ScrollTrigger.getAll();
+    const triggers = ScrollTrigger.getAll();
     triggers.forEach((trigger) => {
       trigger.kill();
     });
@@ -93,7 +93,10 @@ const langBase = `${base}${language === "en" ? "en/" : ""}`;
     <title>{title}</title>
     {data.description && <meta name="description" content={data.description} />}
     {data.keywords && <meta name="keywords" content={data.keywords.join(", ")} />}
-    <meta name="robots" content={`${noindex ? "noindex" : "index"}, ${nofollow ? "nofollow" : "follow"}, max-image-preview:large`} />
+    <meta
+      name="robots"
+      content={`${noindex ? "noindex" : "index"}, ${nofollow ? "nofollow" : "follow"}, max-image-preview:large`}
+    />
     <meta name="google" content="nositelinkssearchbox" />
 
     <!-- OPEN GRAPH -->
@@ -160,11 +163,6 @@ const langBase = `${base}${language === "en" ? "en/" : ""}`;
   <!-- SMOOTH SCROLL ONLY FOR ANCHOR NAVIGATION -->
 
   <body class="overflow-x-hidden">
-    <!-- FIREFOX! -->
-    <script is:inline>
-      true;
-    </script>
-
     <slot />
   </body>
 </html>

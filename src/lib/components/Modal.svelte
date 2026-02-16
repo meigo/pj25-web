@@ -17,7 +17,8 @@
   onclick={(e) => {
     if (e.target === dialog) dialog.close();
   }}
-  class={className}>
+  class={className}
+>
   <button onclick={() => dialog.close()} class="absolute top-0 right-0 outline-none group">
     <XIcon class="w-8 m-1 stroke-pj-blue hover:stroke-white group-focus:stroke-pj-violet " />
   </button>

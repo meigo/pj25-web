@@ -18,13 +18,13 @@ const { title = "" } = Astro.props;
         // If there is no history (direct navigation), go to home page
         // We check if referrer is from the same origin
         const isInternalNavigation = document.referrer && document.referrer.startsWith(window.location.origin);
-        
+
         if (isInternalNavigation) {
           history.back();
         } else {
           // Fallback to home based on current path
-          const isEn = window.location.pathname.startsWith('/en/') || window.location.pathname === '/en';
-          window.location.href = isEn ? '/en' : '/';
+          const isEn = window.location.pathname.startsWith("/en/") || window.location.pathname === "/en";
+          window.location.href = isEn ? "/en" : "/";
         }
       };
 
@@ -61,10 +61,6 @@ const { title = "" } = Astro.props;
     <ClientRouter />
   </head>
   <body class="bg-black">
-    <!-- FIREFOX! -->
-    <script is:inline>
-      0;
-    </script>
     <slot />
   </body>
 </html>

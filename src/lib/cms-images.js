@@ -46,7 +46,10 @@ async function getImageDataByPath(path) {
 export async function getArtistPictureData(data) {
   const sizes = [250, 400, 700];
 
-  const [webpSrcset, jpegSrcset] = await Promise.all([getImageSource(data._id, sizes, "webp"), getImageSource(data._id, sizes, "jpeg")]);
+  const [webpSrcset, jpegSrcset] = await Promise.all([
+    getImageSource(data._id, sizes, "webp"),
+    getImageSource(data._id, sizes, "jpeg"),
+  ]);
 
   const sources = [
     { type: "webp", srcset: webpSrcset },
@@ -73,7 +76,10 @@ export async function getImagePagePictureData(id) {
 
   const sizes = [400, 800, 1500];
 
-  const [webpSrcset, jpegSrcset] = await Promise.all([getImageSource(data._id, sizes, "webp"), getImageSource(data._id, sizes, "jpeg")]);
+  const [webpSrcset, jpegSrcset] = await Promise.all([
+    getImageSource(data._id, sizes, "webp"),
+    getImageSource(data._id, sizes, "jpeg"),
+  ]);
 
   const sources = [
     { type: "webp", srcset: webpSrcset },
@@ -99,7 +105,10 @@ async function getInfoSectionPictureMarkup(data) {
   const sizes = [400, 800];
   const sizesAttr = "(min-width: 1024px) 50vw, 95vw";
 
-  const [webpSrcset, jpegSrcset] = await Promise.all([getImageSource(data._id, sizes, "webp"), getImageSource(data._id, sizes, "jpeg")]);
+  const [webpSrcset, jpegSrcset] = await Promise.all([
+    getImageSource(data._id, sizes, "webp"),
+    getImageSource(data._id, sizes, "jpeg"),
+  ]);
 
   const sources = [
     { type: "webp", srcset: webpSrcset },

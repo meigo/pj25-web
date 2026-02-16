@@ -10,7 +10,10 @@
     "preview": "astro preview",
     "astro": "astro",
     "icons": "node icons/generate.js",
-    "test": "vitest run"
+    "test": "vitest run",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "check": "astro check && svelte-check"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -40,8 +43,18 @@
     "@tailwindcss/forms": "^0.5.10",
     "@types/fs-extra": "^11.0.4",
     "@types/html-minifier": "^4.0.6",
+    "@typescript-eslint/eslint-plugin": "^8.55.0",
+    "@typescript-eslint/parser": "^8.55.0",
     "@vitest/ui": "^4.0.18",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^1.6.0",
+    "eslint-plugin-svelte": "^3.15.0",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-svelte": "^3.4.1",
     "svelte-check": "^4.3.6",
+    "typescript-eslint": "^8.55.0",
     "vitest": "^4.0.18"
   }
 }

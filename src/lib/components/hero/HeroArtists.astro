@@ -15,7 +15,16 @@ interface Props {
 
 const { artistsData } = Astro.props;
 
-let mainArtistsList = ["dimension", "rudim3ntal", "bassjackers", "andromedik", "ran-d", "nublu", "terminaator", "smilers"];
+let mainArtistsList = [
+  "dimension",
+  "rudim3ntal",
+  "bassjackers",
+  "andromedik",
+  "ran-d",
+  "nublu",
+  "terminaator",
+  "smilers",
+];
 
 let mainArtistsData: Record<string, { title: string; slug: string; picture: PictureData }>;
 
@@ -97,7 +106,10 @@ otherArtistsData.sort(compareByName); // Sort by name
     </HeroArtist>
   </div>
 
-  <div id="local-artists" class="max-w-4xl mt-16 text-2xl tracking-wide text-center sm:text-3xl font-bds text-pj-cyan sm:mt-16">
+  <div
+    id="local-artists"
+    class="max-w-4xl mt-16 text-2xl tracking-wide text-center sm:text-3xl font-bds text-pj-cyan sm:mt-16"
+  >
     {
       otherArtistsData.map((artist, index) => (
         <span>

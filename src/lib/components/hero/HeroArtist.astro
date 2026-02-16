@@ -13,11 +13,19 @@ const { class: className, data, delay = 0 } = Astro.props;
 <a href=`#${data.slug}` class="group menu-item menu-anchor">
   <div style=`animation-delay:${delay}ms;`>
     <div class=`relative mx-8 my-5 sm:my-2 ${className}` role="img" aria-label=`${data.title}`>
-      <div class=`relative border-5 border-pj-blue group-focus:border-white aspect-square overflow-hidden rounded-full bg-slate-600`>
+      <div
+        class=`relative border-5 border-pj-blue group-focus:border-white aspect-square overflow-hidden rounded-full bg-slate-600`
+      >
         <div class="absolute inset-0 bg-pj-blue-light"></div>
 
         <div class="absolute inset-0 transition duration-200 group-hover:scale-105 group-focus:scale-105">
-          <Picture data={data?.picture} lazy={false} priority={true} sizes="250px" class="absolute inset-0 object-cover w-full h-full max-w-none" />
+          <Picture
+            data={data?.picture}
+            lazy={false}
+            priority={true}
+            sizes="250px"
+            class="absolute inset-0 object-cover w-full h-full max-w-none"
+          />
         </div>
       </div>
 

@@ -15,7 +15,8 @@ const isVideo = !!data.video_id;
 
 <div
   class=`mx-auto relative aspect-[5/6] w-4/5 max-w-[350px] md:w-full overflow-hidden rounded-5xl border-4 border-b-12 border-pj-blue focus-within:border-white
-  ${rotationClass} ${!isVideo && 'pointer-events-none'}`>
+  ${rotationClass} ${!isVideo && 'pointer-events-none'}`
+>
   {
     isVideo ? (
       <a class="group " href={`/video/${data.video_id}`}>

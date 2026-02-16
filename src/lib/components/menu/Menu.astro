@@ -19,10 +19,24 @@ const { language, data } = Astro.props;
 <nav class="z-20">
   <div class="fixed top-0 left-0 mt-0 ml-0 sm:mt-2 sm:ml-1 xl:ml-2 flex flex-col justify-center xl:items-center">
     <div class="flex flex-col xl:flex-row">
-      <AButton href="https://www.facebook.com/jaanituli" ariaLabel="Instagram" tabIndex="1" class="m-1" target="_blank" rel="noopener noreferrer">
+      <AButton
+        href="https://www.facebook.com/jaanituli"
+        ariaLabel="Instagram"
+        tabIndex="1"
+        class="m-1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <FB class="text-white w-7 group-hover/slot:text-pj-violet" />
       </AButton>
-      <AButton href="https://www.instagram.com/pyhakas" ariaLabel="Facebook" tabIndex="2" class="m-1" target="_blank" rel="noopener noreferrer">
+      <AButton
+        href="https://www.instagram.com/pyhakas"
+        ariaLabel="Facebook"
+        tabIndex="2"
+        class="m-1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Instagram class="text-white w-7 group-hover/slot:text-pj-violet" />
       </AButton>
       {
@@ -54,17 +68,35 @@ const { language, data } = Astro.props;
 
   <div
     id="anchors"
-    class="fixed inset-y-0 left-0 pb-2 flex flex-col overflow-hidden pointer-events-none justify-center pt-[198px] sm:pt-0 sm:justify-center">
+    class="fixed inset-y-0 left-0 pb-2 flex flex-col overflow-hidden pointer-events-none justify-center pt-[198px] sm:pt-0 sm:justify-center"
+  >
     <div class="relative -left-2">
       {
         data.tickets && (
           <span class="xl:hidden">
-            <MenuButton href={data.tickets.url} label={data.tickets.title} icon={"ticket"} tabIndex="5" class="bg-yellow-400" reload target="_blank" rel="noopener noreferrer" />
+            <MenuButton
+              href={data.tickets.url}
+              label={data.tickets.title}
+              icon={"ticket"}
+              tabIndex="5"
+              class="bg-yellow-400"
+              reload
+              target="_blank"
+              rel="noopener noreferrer"
+            />
           </span>
         )
       }
-      {data.artists && <MenuButton href="#artists" label={data.artists.title} icon={"artists"} delay="100" tabIndex="6" />}
-      {data.schedule && <MenuButton href="#schedule" label={data.schedule.title} icon={"schedule"} delay="150" tabIndex="7" />}
+      {
+        data.artists && (
+          <MenuButton href="#artists" label={data.artists.title} icon={"artists"} delay="100" tabIndex="6" />
+        )
+      }
+      {
+        data.schedule && (
+          <MenuButton href="#schedule" label={data.schedule.title} icon={"schedule"} delay="150" tabIndex="7" />
+        )
+      }
       {data.info && <MenuButton href="#info" label={data.info.title} icon={"info"} delay="200" tabIndex="8" />}
       {data.contact && <MenuButton href="#contact" label={data.contact.title} icon={"mail"} delay="250" tabIndex="9" />}
     </div>

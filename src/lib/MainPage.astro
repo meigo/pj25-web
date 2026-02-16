@@ -1,5 +1,12 @@
 ---
-import { getSiteData, getMenuData, getBackgroundsData, getArtistsSectionData, getScheduleSectionData, getInfoSectionData } from "@lib/cms";
+import {
+  getSiteData,
+  getMenuData,
+  getBackgroundsData,
+  getArtistsSectionData,
+  getScheduleSectionData,
+  getInfoSectionData,
+} from "@lib/cms";
 import Layout from "../layouts/MainLayout.astro";
 import Menu from "@lib/components/menu/Menu.astro";
 import FooterSection from "@lib/sections/FooterSection.astro";
@@ -17,17 +24,24 @@ interface Props {
 const { language } = Astro.props;
 
 // Fetch all data in parallel to avoid waterfalls
-const [siteData, menuData, artistsSectionData, scheduleSectionData, infoSectionData, imageSectionsData] = await Promise.all([
-  getSiteData(language),
-  getMenuData(language),
-  getArtistsSectionData(language),
-  getScheduleSectionData(language),
-  getInfoSectionData(language),
-  getBackgroundsData(),
-]);
+const [siteData, menuData, artistsSectionData, scheduleSectionData, infoSectionData, imageSectionsData] =
+  await Promise.all([
+    getSiteData(language),
+    getMenuData(language),
+    getArtistsSectionData(language),
+    getScheduleSectionData(language),
+    getInfoSectionData(language),
+    getBackgroundsData(),
+  ]);
 ---
 
-<Layout {language} title={siteData.title} og schema performers={artistsSectionData.artists?.map((a: ArtistData) => a.name) ?? []}>
+<Layout
+  {language}
+  title={siteData.title}
+  og
+  schema
+  performers={artistsSectionData.artists?.map((a: ArtistData) => a.name) ?? []}
+>
   <h1 class="absolute text-xs text-pj-blue -top-10">{siteData.title}</h1>
 
   <HeroSection {language} artistsData={artistsSectionData.artists} />

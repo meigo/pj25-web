@@ -67,8 +67,8 @@ const options: ISourceOptions = {
   import { loadSlim } from "tsparticles-slim";
 
   // the function name is the parameter passed to the init attribute required add the function to window is mandatory, it will be searched there
-  (window as any).particlesInit = async function (engine: Engine) {
-    await loadSlim(engine);
+  (window as Window & { particlesInit?: (_engine: Engine) => Promise<void> }).particlesInit = async function (_engine: Engine) {
+    await loadSlim(_engine);
   };
 </script>
 

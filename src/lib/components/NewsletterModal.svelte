@@ -10,13 +10,16 @@
   const submitButtonLabel = language === "en" ? "Sign up" : "Liitu";
   const placeholderText = language === "en" ? "Your e-mail" : "Sinu e-mail";
   const successMessage =
-    language === "en" ? "You have successfully subscribed to our newsletter!" : "Täname, oled liitunud meie uudiskirjaga!";
+    language === "en"
+      ? "You have successfully subscribed to our newsletter!"
+      : "Täname, oled liitunud meie uudiskirjaga!";
   const errorMessage = language === "en" ? "Subscription failed, try again!" : "Liitumine ebaõnnestus, proovi uuesti!";
   const titleText =
     language === "en"
       ? "To receive festival news and offers related to the Pühajärve Midsummer Fire, sign up for our newsletter."
       : "Pühajärve jaanitulega seotud festivaliuudiste ja pakkumiste saamiseks liitu meie uudiskirjaga.";
-  const consentLabel = language === "en" ? "I agree to receive the newsletter and accept the" : "Nõustun uudiskirja saamisega ja";
+  const consentLabel =
+    language === "en" ? "I agree to receive the newsletter and accept the" : "Nõustun uudiskirja saamisega ja";
   const privacyPolicyLabel = language === "en" ? "privacy policy" : "andmekaitsetingimustega";
   const consentError = language === "en" ? "You must agree to the terms." : "Tingimustega nõustumine on kohustuslik.";
 
@@ -59,10 +62,10 @@
     isSubmitting = true;
 
     try {
-      const result = await subscribeToNewsletter(email, form.email.value, consent);
+      await subscribeToNewsletter(email, form.email.value, consent);
       message = successMessage;
       submitSuccess = true;
-    } catch (error) {
+    } catch (_error) { // eslint-disable-line no-unused-vars
       message = errorMessage;
       // console.error("Subscription error:", error);
     }
@@ -98,9 +101,12 @@
   onclick={() => (showModal = true)}
   class="outline-none flex justify-center items-center text-pj-blue min-h-8 min-w-8 w-full px-2 py-2 xl:px-3 xl:py-1 rounded-full
    bg-pj-mint hover:bg-pj-cyan focus:bg-white origin-center hover:scale-105 group fade-in"
-  tabindex={tabIndex}>
+  tabindex={tabIndex}
+>
   <NL class="w-5 fill-pj-blue group-hover:fill-pj-violet " />
-  <span class="ml-1 font-sans text-sm font-medium uppercase hidden xl:block group-hover:text-pj-violet">{newsletterButtonLabel}</span>
+  <span class="ml-1 font-sans text-sm font-medium uppercase hidden xl:block group-hover:text-pj-violet"
+    >{newsletterButtonLabel}</span
+  >
 </button>
 
 <!-- MODAL -->
@@ -125,7 +131,8 @@
               required
               class="min-w-0 x-3.5 py-2 text-lg sm:text-sm/6 flex-auto rounded-md border-none bg-white p text-gray-900 placeholder:text-gray-400
               outline-pj-blue focus:outline-2 focus:-outline-offset-2 focus:outline-pj-blue-light"
-              placeholder={placeholderText} />
+              placeholder={placeholderText}
+            />
 
             <!-- H o n e y p o t -->
             <div class="absolute top-0 left-0 w-0 h-0 opacity-0 -z-1">
@@ -137,7 +144,8 @@
               disabled={isSubmitting}
               class="block flex justify-center items-center min-h-12 min-w-32 uppercase flex-none rounded-lg bg-pj-blue px-3.5 py-2.5 text-lg text-white outline-none
               hover:bg-pj-blue-light focus-visible:bg-pj-violet
-              ">
+              "
+            >
               {#if isSubmitting}
                 <span class="spinner"></span>
               {:else}
@@ -154,14 +162,16 @@
                 type="checkbox"
                 required
                 bind:checked={consent}
-                class="h-4 w-4 rounded border-gray-300 text-pj-blue focus:ring-pj-blue" />
+                class="h-4 w-4 rounded border-gray-300 text-pj-blue focus:ring-pj-blue"
+              />
             </div>
             <div class="text-sm leading-6 text-pj-blue">
               <label for="consent" class="font-medium">
                 {consentLabel}
                 <a
                   href={language === "en" ? "/en/privacy-policy" : "/andmekaitsetingimused"}
-                  class="underline hover:text-pj-blue-light">
+                  class="underline hover:text-pj-blue-light"
+                >
                   {privacyPolicyLabel}
                 </a>
               </label>
