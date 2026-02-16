@@ -24,6 +24,13 @@ if (!empty($input['email'])) {
 }
 
 $email = filter_var(value: $input['liame'] ?? '', filter: FILTER_SANITIZE_EMAIL);
+$consent = $input['consent'] ?? false;
+
+if (!$consent) {
+  http_response_code(400);
+  echo json_encode(['error' => 'Consent is required']);
+  exit;
+}
 
 if (!$email || !filter_var(value: $email, filter: FILTER_VALIDATE_EMAIL)) {
   http_response_code(response_code: 400);

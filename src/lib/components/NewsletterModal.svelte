@@ -20,12 +20,19 @@
     language === "en"
       ? "We keep your email address secure and use it only to send you the newsletter."
       : "Hoiame Sinu e-maili aadressi kaitstuna ning kasutame seda ainult uudiskirja edastamiseks.";
+  const consentLabel =
+    language === "en"
+      ? "I agree to receive the newsletter and accept the"
+      : "Nõustun uudiskirja saamisega ja";
+  const privacyPolicyLabel = language === "en" ? "privacy policy" : "andmekaitsetingimustega";
+  const consentError = language === "en" ? "You must agree to the terms." : "Tingimustega nõustumine on kohustuslik.";
 
   let showModal = $state(false);
   let form = $state();
   let isSubmitting = $state(false);
   let submitSuccess = $state(false);
   let message = $state("");
+  let consent = $state(false);
 
   $effect(() => {
     if (showModal === false) {
@@ -33,6 +40,7 @@
       isSubmitting = false;
       submitSuccess = false;
       message = "";
+      consent = false;
     }
   });
 
@@ -40,6 +48,11 @@
     e.preventDefault();
 
     message = "";
+
+    if (!consent) {
+      message = consentError;
+      return;
+    }
 
     const email = form.liame.value;
     if (email === "") return;
@@ -53,7 +66,7 @@
     isSubmitting = true;
 
     try {
-      const result = await subscribeToNewsletter(email, form.email.value);
+      const result = await subscribeToNewsletter(email, form.email.value, consent);
       message = successMessage;
       submitSuccess = true;
     } catch (error) {
@@ -64,13 +77,14 @@
     isSubmitting = false;
   }
 
-  async function subscribeToNewsletter(email, honeypot) {
+  async function subscribeToNewsletter(email, honeypot, consent) {
     try {
       const response = await fetch("/newsletter.php", {
         method: "POST",
         body: JSON.stringify({
           liame: email,
           email: honeypot,
+          consent: consent,
         }),
       });
       const data = await response.json();
@@ -138,6 +152,30 @@
               {/if}
             </button>
           </div>
+
+          <div class="mt-4 flex items-start gap-2">
+            <div class="flex h-6 items-center">
+              <input
+                id="consent"
+                name="consent"
+                type="checkbox"
+                required
+                bind:checked={consent}
+                class="h-4 w-4 rounded border-gray-300 text-pj-blue focus:ring-pj-blue" />
+            </div>
+            <div class="text-sm leading-6 text-pj-blue">
+              <label for="consent" class="font-medium">
+                {consentLabel}
+                <a
+                  href={language === "en" ? "/en/privacy-policy" : "/andmekaitsetingimused"}
+                  class="underline hover:text-pj-blue-light"
+                  target="_blank">
+                  {privacyPolicyLabel}
+                </a>
+              </label>
+            </div>
+          </div>
+
           <p class="mt-6 text-sm/6 text-pj-blue">
             {privacyText}
           </p>
