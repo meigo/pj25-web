@@ -1,0 +1,16 @@
+---
+import XIcon from "@lib/svg/XIcon.astro";
+
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="flex items-center w-12 h-12 mt-1 outline-none bg-pj-cyan rounded-s-full border-4 border-r-0 border-pj-blue focus:border-white"
+  aria-label="Close and return to home">
+  <XIcon class="w-8 p-1 ml-2 text-pj-blue hover:text-white hover:animate-scale-pulse" />
+</a>

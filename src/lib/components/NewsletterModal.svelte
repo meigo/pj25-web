@@ -16,14 +16,7 @@
     language === "en"
       ? "To receive festival news and offers related to the Pühajärve Midsummer Fire, sign up for our newsletter."
       : "Pühajärve jaanitulega seotud festivaliuudiste ja pakkumiste saamiseks liitu meie uudiskirjaga.";
-  const privacyText =
-    language === "en"
-      ? "We keep your email address secure and use it only to send you the newsletter."
-      : "Hoiame Sinu e-maili aadressi kaitstuna ning kasutame seda ainult uudiskirja edastamiseks.";
-  const consentLabel =
-    language === "en"
-      ? "I agree to receive the newsletter and accept the"
-      : "Nõustun uudiskirja saamisega ja";
+  const consentLabel = language === "en" ? "I agree to receive the newsletter and accept the" : "Nõustun uudiskirja saamisega ja";
   const privacyPolicyLabel = language === "en" ? "privacy policy" : "andmekaitsetingimustega";
   const consentError = language === "en" ? "You must agree to the terms." : "Tingimustega nõustumine on kohustuslik.";
 
@@ -168,17 +161,12 @@
                 {consentLabel}
                 <a
                   href={language === "en" ? "/en/privacy-policy" : "/andmekaitsetingimused"}
-                  class="underline hover:text-pj-blue-light"
-                  target="_blank">
+                  class="underline hover:text-pj-blue-light">
                   {privacyPolicyLabel}
                 </a>
               </label>
             </div>
           </div>
-
-          <p class="mt-6 text-sm/6 text-pj-blue">
-            {privacyText}
-          </p>
 
           <div class="mt-2 font-sans text-base text-red-500 font-medium">{message}</div>
         </form>

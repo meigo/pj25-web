@@ -1,47 +1,30 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
-import ContainerSection from "@lib/components/ContainerSection.astro";
-import Menu from "@lib/components/menu/Menu.astro";
-import FooterSection from "@lib/sections/FooterSection.astro";
-import { getSiteData, getMenuData } from "@lib/cms";
-
-const language = "en";
-const [siteData, menuData] = await Promise.all([getSiteData(language), getMenuData(language)]);
+import PrivacyPage from "@lib/PrivacyPage.astro";
 ---
 
-<MainLayout {language} title={`Privacy Policy - ${siteData.title}`} noindex nofollow>
-  <ContainerSection class="py-20 bg-pj-mint min-h-screen">
-    <div class="max-w-4xl mx-auto text-pj-blue">
-      <h1 class="text-4xl font-bold mb-8 uppercase">Privacy Policy</h1>
+<PrivacyPage language="en" title="Privacy Policy" backHref="/en">
+  <p class="mb-6 text-lg">
+    This is the Privacy Policy page for Pühajärve Midsummer Fire. Here we describe how we process your personal data.
+  </p>
 
-      <p class="mb-6 text-lg">
-        This is the Privacy Policy page for Pühajärve Midsummer Fire. Here we describe how we process your personal data.
-      </p>
+  <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">1. What data do we collect?</h2>
+  <p class="mb-6 text-lg">When you sign up for our newsletter, we collect your email address.</p>
 
-      <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">1. What data do we collect?</h2>
-      <p class="mb-6 text-lg">When you sign up for our newsletter, we collect your email address.</p>
+  <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">2. Why do we collect data?</h2>
+  <p class="mb-6 text-lg">
+    We use your email address only to send you news and offers related to the Pühajärve Midsummer Fire festival.
+  </p>
 
-      <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">2. Why do we collect data?</h2>
-      <p class="mb-6 text-lg">
-        We use your email address only to send you news and offers related to the Pühajärve Midsummer Fire festival.
-      </p>
+  <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">3. Who do we share data with?</h2>
+  <p class="mb-6 text-lg">
+    We do not share your data with third parties, except for the service provider Brevo, which we use solely for the technical delivery of our newsletters.
+  </p>
 
-      <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">3. Who do we share data with?</h2>
-      <p class="mb-6 text-lg">
-        We do not share your data with third parties, except for service providers who help us send newsletters (e.g., Brevo).
-      </p>
-
-      <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">4. Your rights</h2>
-      <p class="mb-6 text-lg">
-        You have the right to access, correct, or request the deletion of your data at any time by writing to us at <a
-          href="mailto:info@jaanituli.ee"
-          class="underline hover:text-pj-blue-light">info@jaanituli.ee</a
-        > or by using the link at the end of the newsletter.
-      </p>
-    </div>
-  </ContainerSection>
-
-  <FooterSection />
-
-  <Menu {language} data={menuData} />
-</MainLayout>
+  <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">4. Your rights</h2>
+  <p class="mb-6 text-lg">
+    You have the right to access, correct, or request the deletion of your data at any time by writing to us at <a
+      href="mailto:info@jaanituli.ee"
+      class="underline hover:text-pj-blue-light">info@jaanituli.ee</a
+    > or by using the link at the end of the newsletter.
+  </p>
+</PrivacyPage>

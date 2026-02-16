@@ -7,12 +7,27 @@ import skyplus from "@assets/sponsor_skyplus.png";
 import move from "@assets/sponsor_move.png";
 import otepaa from "@assets/sponsor_otepaa.png";
 import saku from "@assets/sponsor_saku.png";
+
+interface Props {
+  language?: Language;
+}
+
+const { language = "et" } = Astro.props;
+
+const privacyPolicyLabel = language === "en" ? "Privacy Policy" : "Andmekaitsetingimused";
+const privacyPolicyUrl = language === "en" ? "/en/privacy-policy" : "/andmekaitsetingimused";
 ---
 
 <section id="footer" class="relative">
   <div class="bg-pj-mint">
     <div class="max-w-6xl pl-16 pr-4 sm:px-14 py-8 flex flex-wrap justify-center items-center sm:mx-auto">
-      <a href="https://monstermusic.ee/" class="outline-none group" aria-label="Monster Music logo" data-astro-reload target="_blank" rel="noopener noreferrer">
+      <a
+        href="https://monstermusic.ee/"
+        class="outline-none group"
+        aria-label="Monster Music logo"
+        data-astro-reload
+        target="_blank"
+        rel="noopener noreferrer">
         <MonsterMusic class="h-16 fill-pj-blue hover:fill-[#006DFF] group-focus:fill-pj-blue-light" />
       </a>
 
@@ -27,6 +42,14 @@ import saku from "@assets/sponsor_saku.png";
       </a>
       <a href="https://saku.ee/" class="link-hover group" data-astro-reload target="_blank" rel="noopener noreferrer">
         <Image src={saku} alt="Saku logo" class="logo-image" />
+      </a>
+    </div>
+
+    <div class="pb-8 flex justify-center">
+      <a
+        href={privacyPolicyUrl}
+        class="text-pj-blue font-bold uppercase text-sm hover:text-pj-blue-light outline-none focus:text-pj-blue-light">
+        · {privacyPolicyLabel} ·
       </a>
     </div>
   </div>

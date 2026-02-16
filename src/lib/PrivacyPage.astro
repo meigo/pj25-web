@@ -1,0 +1,44 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import GrainOverlay from "@components/GrainOverlay.astro";
+import Menu from "@lib/components/menu/Menu.astro";
+import FooterSection from "@lib/sections/FooterSection.astro";
+import CloseButton from "@lib/components/menu/CloseButton.astro";
+import { getSiteData, getMenuData } from "@lib/cms";
+import colors from "@lib/colors";
+
+interface Props {
+  language: Language;
+  title: string;
+  backHref: string;
+}
+
+const { language, title, backHref } = Astro.props;
+
+const [siteData, menuData] = await Promise.all([getSiteData(language), getMenuData(language)]);
+
+const colorStart = colors["pj-cyan"];
+const colorEnd = colors["pj-blue-light"];
+---
+
+<MainLayout {language} title={`${title} - ${siteData.title}`} noindex nofollow>
+  <section class="relative">
+    <div class="fixed top-2 right-0 z-50">
+      <CloseButton href={backHref} />
+    </div>
+    <div class="px-4 py-16 grad min-h-screen">
+      <div class="max-w-4xl mx-auto text-pj-blue">
+        <h1 class="text-4xl xl:text-6xl font-bold mb-8 uppercase break-words hyphens-auto text-balance">{title}</h1>
+        <slot />
+      </div>
+    </div>
+
+    <GrainOverlay />
+  </section>
+</MainLayout>
+
+<style lang="postcss" define:vars={{ colorStart, colorEnd }}>
+  .grad {
+    background: linear-gradient(to bottom, var(--colorStart) 20%, var(--colorEnd) 90%);
+  }
+</style>

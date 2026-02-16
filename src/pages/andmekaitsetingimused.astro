@@ -1,45 +1,28 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
-import ContainerSection from "@lib/components/ContainerSection.astro";
-import Menu from "@lib/components/menu/Menu.astro";
-import FooterSection from "@lib/sections/FooterSection.astro";
-import { getSiteData, getMenuData } from "@lib/cms";
-
-const language = "et";
-const [siteData, menuData] = await Promise.all([getSiteData(language), getMenuData(language)]);
+import PrivacyPage from "@lib/PrivacyPage.astro";
 ---
 
-<MainLayout {language} title={`Andmekaitsetingimused - ${siteData.title}`} noindex nofollow>
-  <ContainerSection class="py-20 bg-pj-mint min-h-screen">
-    <div class="max-w-4xl mx-auto text-pj-blue">
-      <h1 class="text-4xl font-bold mb-8 uppercase">Andmekaitsetingimused</h1>
+<PrivacyPage language="et" title="Andmekaitsetingimused" backHref="/">
+  <p class="mb-6 text-lg">
+    See on Pühajärve Jaanitule andmekaitsetingimuste leht. Siin kirjeldatakse, kuidas me töötleme teie isikuandmeid.
+  </p>
 
-      <p class="mb-6 text-lg">
-        See on Pühajärve Jaanitule andmekaitsetingimuste leht. Siin kirjeldatakse, kuidas me töötleme teie isikuandmeid.
-      </p>
+  <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">1. Milliseid andmeid me kogume?</h2>
+  <p class="mb-6 text-lg">Uudiskirjaga liitumisel kogume teie e-posti aadressi.</p>
 
-      <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">1. Milliseid andmeid me kogume?</h2>
-      <p class="mb-6 text-lg">Uudiskirjaga liitumisel kogume teie e-posti aadressi.</p>
+  <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">2. Miks me andmeid kogume?</h2>
+  <p class="mb-6 text-lg">Kasutame teie e-posti aadressi ainult Pühajärve Jaanitulega seotud uudiste ja pakkumiste saatmiseks.</p>
 
-      <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">2. Miks me andmeid kogume?</h2>
-      <p class="mb-6 text-lg">Kasutame teie e-posti aadressi ainult Pühajärve Jaanitulega seotud uudiste ja pakkumiste saatmiseks.</p>
+  <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">3. Kellele me andmeid jagame?</h2>
+  <p class="mb-6 text-lg">
+    Me ei jaga teie andmeid kolmandate osapooltega, välja arvatud teenusepakkuja Brevo, keda kasutame ainult uudiskirjade tehniliseks edastamiseks.
+  </p>
 
-      <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">3. Kellele me andmeid jagame?</h2>
-      <p class="mb-6 text-lg">
-        Me ei jaga teie andmeid kolmandate osapooltega, välja arvatud teenusepakkujad, kes aitavad meil uudiskirju saata (nt Brevo).
-      </p>
-
-      <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">4. Teie õigused</h2>
-      <p class="mb-6 text-lg">
-        Teil on igal ajal õigus oma andmetega tutvuda, neid parandada või paluda nende kustutamist, kirjutades meile <a
-          href="mailto:info@jaanituli.ee"
-          class="underline hover:text-pj-blue-light">info@jaanituli.ee</a
-        > või kasutades uudiskirja lõpus olevat linki.
-      </p>
-    </div>
-  </ContainerSection>
-
-  <FooterSection />
-
-  <Menu {language} data={menuData} />
-</MainLayout>
+  <h2 class="text-2xl font-bold mt-10 mb-4 uppercase">4. Teie õigused</h2>
+  <p class="mb-6 text-lg">
+    Teil on igal ajal õigus oma andmetega tutvuda, neid parandada või paluda nende kustutamist, kirjutades meile <a
+      href="mailto:info@jaanituli.ee"
+      class="underline hover:text-pj-blue-light">info@jaanituli.ee</a
+    > või kasutades uudiskirja lõpus olevat linki.
+  </p>
+</PrivacyPage>
