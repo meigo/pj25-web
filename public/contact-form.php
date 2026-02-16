@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail = new PHPMailer();
             // $mail->SMTPDebug = 4; 
 
-            $to = "kontakt@jaanituli.ee"; // Change this to your email
+            $to = "info@jaanituli.ee"; // Change this to your email
 
             $emailParts = explode('@', $email);
             $name = ucfirst($emailParts[0]);
